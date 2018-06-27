@@ -1,2 +1,0 @@
-class Disadvantage < ApplicationRecord
-end

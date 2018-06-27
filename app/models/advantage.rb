@@ -1,2 +1,0 @@
-class Advantage < ApplicationRecord
-end
