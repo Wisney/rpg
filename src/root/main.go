@@ -24,7 +24,7 @@ var thirdViewTpl *template.Template
 
 func main() {
 	serverCfg := Config{
-		Host:         "localhost:" + os.Getenv("PORT"),
+		Host:         "127.0.0.1:" + os.Getenv("PORT"),
 		ReadTimeout:  5 * time.Second,
 		WriteTimeout: 5 * time.Second,
 	}
