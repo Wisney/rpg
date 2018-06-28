@@ -57,8 +57,7 @@ var _templatesIndexHtml = []byte(`<!DOCTYPE html>
         <!-- Required meta tags -->
         <meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<link rel="shortcut icon" href="https://dyn.web.whatsapp.com/pp?e=https%3A%2F%2Fpps.whatsapp.net%2Fv%2Ft61.11540-24%2F21344153_1918861181771023_1135416033952137216_n.jpg%3Foe%3D5B379DFC%26oh%3Dcb55af8a541412b15f717d3d7f4dddb7&t=l&u=558897351930-1505522667%40g.us&i=1505523791"/>
-
+		<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgo=https://dyn.web.whatsapp.com/pp?e=https%3A%2F%2Fpps.whatsapp.net%2Fv%2Ft61.11540-24%2F21344153_1918861181771023_1135416033952137216_n.jpg%3Foe%3D5B379DFC%26oh%3Dcb55af8a541412b15f717d3d7f4dddb7&t=l&u=558897351930-1505522667%40g.us&i=1505523791">
         <title>Rpg dos Caras!</title>
 
         <!-- Bootstrap CSS -->

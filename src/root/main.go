@@ -74,6 +74,7 @@ func Start(cfg Config) *HTMLServer {
 
 	// Setup Handlers
 	router := mux.NewRouter()
+
 	router.HandleFunc("/", HomeHandler)
 	router.HandleFunc("/second", SecondHandler)
 	router.HandleFunc("/third/{number}", ThirdHandler)
