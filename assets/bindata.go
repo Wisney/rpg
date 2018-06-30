@@ -155,12 +155,13 @@ func staticNavigationBarCSS() (*asset, error) {
 	return a, nil
 }
 
-var _staticStyleCSS = []byte(`h1, h2, h3, h4, h5 {
-    text-align: center;
-}`)
-
 func staticStyleCSSBytes() ([]byte, error) {
-	return _staticStyleCSS, nil
+	css, err := ioutil.ReadFile("/static/style.css") // just pass the file name
+	if err != nil {
+		fmt.Print(err)
+	}
+	return css, err
+	//return _staticStyleCSS, nil
 }
 
 func staticStyleCSS() (*asset, error) {
@@ -174,16 +175,14 @@ func staticStyleCSS() (*asset, error) {
 	return a, nil
 }
 
-var _staticThirdViewCSS = []byte(`.result-box {
-    margin-top: 50px;
-}
-
-.result-underlined {
-    text-decoration: underline;
-}`)
-
 func staticThirdViewCSSBytes() ([]byte, error) {
-	return _staticThirdViewCSS, nil
+	css, err := ioutil.ReadFile("/static/third_view.css") // just pass the file name
+	if err != nil {
+		fmt.Print(err)
+	}
+
+	return css, err
+	//return _staticThirdViewCSS, nil
 }
 
 func staticThirdViewCSS() (*asset, error) {

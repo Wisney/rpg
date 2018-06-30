@@ -23,7 +23,7 @@ body {
 }
 
 .hello {
-    color: white;
+    color:red;
     font-weight: bold;
     opacity: 1;
     min-width: 100px;
