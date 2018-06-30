@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
-	"rpg/src/assets"
+	"rpg/assets"
 	"strconv"
 	"sync"
 	"time"
@@ -80,6 +80,7 @@ func Start(cfg Config) *HTMLServer {
 	router.HandleFunc("/third/{number}", ThirdHandler)
 	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
 	router.HandleFunc("/favicon.ico", faviconHandler)
+	router.HandleFunc("/img", img)
 
 	// Create the HTML Server
 	htmlServer := HTMLServer{
@@ -107,7 +108,12 @@ func Start(cfg Config) *HTMLServer {
 
 func faviconHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "image/png")
-	http.ServeFile(w, r, "src/static/favicon.ico")
+	http.ServeFile(w, r, "static/favicon.ico")
+}
+
+func img(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "image/png")
+	http.ServeFile(w, r, "static/img.png")
 }
 
 // Stop turns off the HTML Server
