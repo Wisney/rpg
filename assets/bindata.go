@@ -52,12 +52,12 @@ func (fi bindataFileInfo) Sys() interface{} {
 }
 
 func templatesIndexHTMLBytes() ([]byte, error) {
-	b, err := ioutil.ReadFile("./templates/index.html") // just pass the file name
+	html, err := ioutil.ReadFile("./templates/index.html") // just pass the file name
 	if err != nil {
 		fmt.Print(err)
 	}
 
-	return b, err
+	return html, err
 
 	//return _templatesIndexHTML, nil
 }
@@ -73,27 +73,15 @@ func templatesIndexHTML() (*asset, error) {
 	return a, nil
 }
 
-var _templatesNavigationBarHTML = []byte(`<!-- Navigation Bar -->
-<nav class="navbar navbar-light bg-light">
-    <div class="container">
-        <span class="navbar-brand">Brand</span>
-
-        <ul class="nav justify-content-end">
-            <li class="nav-item">
-                <a id="homeNav" class="nav-link" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-                <a id="secondNav" class="nav-link" href="/second">Second</a>
-            </li>
-            <li class="nav-item">
-                <a id="thirdNav" class="nav-link" href="/third/1">Third</a>
-            </li>
-        </ul>
-    </div>
-</nav>`)
-
 func templatesNavigationBarHTMLBytes() ([]byte, error) {
-	return _templatesNavigationBarHTML, nil
+	html, err := ioutil.ReadFile("./templates/navigation_bar.html") // just pass the file name
+	if err != nil {
+		fmt.Print(err)
+	}
+
+	return html, err
+
+	//return _templatesNavigationBarHTML, nil
 }
 
 func templatesNavigationBarHTML() (*asset, error) {
@@ -107,38 +95,15 @@ func templatesNavigationBarHTML() (*asset, error) {
 	return a, nil
 }
 
-var _templatesSecondViewHTML = []byte(`<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Golang HTML Server</title>
-
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-
-        <link rel="stylesheet" href="/static/style.css">
-        <link rel="stylesheet" href="/static/navigation_bar.css">
-    </head>
-    <body>
-        <div class="container">
-            {{.NavigationBar}}
-
-            <h1>Another View</h1>
-            <h2>- Content Goes Here -</h2>
-        </div>
-    </body>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-</html>`)
-
 func templatesSecondViewHTMLBytes() ([]byte, error) {
-	return _templatesSecondViewHTML, nil
+	html, err := ioutil.ReadFile("./templates/second_view.html") // just pass the file name
+	if err != nil {
+		fmt.Print(err)
+	}
+
+	return html, err
+
+	//return _templatesSecondViewHTML, nil
 }
 
 func templatesSecondViewHTML() (*asset, error) {
@@ -152,50 +117,14 @@ func templatesSecondViewHTML() (*asset, error) {
 	return a, nil
 }
 
-var _templatesThirdViewHTML = []byte(`<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Golang HTML Server</title>
-
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-
-        <link rel="stylesheet" href="/static/style.css">
-        <link rel="stylesheet" href="/static/navigation_bar.css">
-        <link rel="stylesheet" href="/static/third_view.css">
-    </head>
-    <body>
-        <div class="container">
-            {{.NavigationBar}}
-
-            <h1>Rendering Data</h1>
-            <h4>This page takes the number passed in and determines if it is odd or even</h4>
-            <div class="result-box">
-                {{if .StringQuery}}
-                    <h2 class="result-underlined">You didn't enter a number, you did this:</h2>
-                    <h3>{{.StringQuery}}</h3>
-                {{else}}
-                    <h2 class="result-underlined">The number entered is</h2>
-                    <h3>{{.Number}}</h3>
-                    <h2 class="result-underlined">This number is</h2>
-                    <h3>{{.Number | formatOddOrEven}}</h3>
-                {{end}}
-            </div>
-        </div>
-    </body>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-</html>`)
-
 func templatesThirdViewHTMLBytes() ([]byte, error) {
-	return _templatesThirdViewHTML, nil
+	html, err := ioutil.ReadFile("./templates/third_view.html") // just pass the file name
+	if err != nil {
+		fmt.Print(err)
+	}
+
+	return html, err
+	//return _templatesThirdViewHTML, nil
 }
 
 func templatesThirdViewHTML() (*asset, error) {
