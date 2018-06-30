@@ -79,6 +79,7 @@ func Start(cfg Config) *HTMLServer {
 	router.HandleFunc("/second", SecondHandler)
 	router.HandleFunc("/third/{number}", ThirdHandler)
 	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
+	router.HandleFunc("/favicon.ico", faviconHandler)
 
 	// Create the HTML Server
 	htmlServer := HTMLServer{
@@ -102,6 +103,11 @@ func Start(cfg Config) *HTMLServer {
 	}()
 
 	return &htmlServer
+}
+
+func faviconHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "image/png")
+	http.ServeFile(w, r, "src/static/favicon.ico")
 }
 
 // Stop turns off the HTML Server
