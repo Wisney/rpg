@@ -51,60 +51,19 @@ func (fi bindataFileInfo) Sys() interface{} {
 	return nil
 }
 
-var _templatesIndexHtml = []byte(`<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+func templatesIndexHTMLBytes() ([]byte, error) {
+	b, err := ioutil.ReadFile("./templates/index.html") // just pass the file name
+	if err != nil {
+		fmt.Print(err)
+	}
 
-        <title>Rpg dos Caras!</title>
+	return b, err
 
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-
-        <link rel="stylesheet" href="/static/style.css">
-        <link rel="stylesheet" href="/static/navigation_bar.css">
-    </head>
-    <body class = "b">
-        <div class="container">
-			{{.NavigationBar}}
-			<br>
-            <h2 class="hello">E aew os caras! e.e</h2>
-		</div>
-		<div>
-		
-		<form class="login">
-		<div class="panel-login">
-			<div class="form-group">
-				<label for="nick" class="form-control l">Nick ou Email:</label>
-				<input type="email" class="form-control" id="nick" aria-describedby="emailHelp" placeholder="Escreva nick ou email">
-			</div>
-			<div class="form-group">
-				<label for="password" class="form-control l">Password:</label>
-				<input type="password" class="form-control" id="password" placeholder="Password">
-			</div>
-			<button type="submit" class="btn-lg btn-primary">Entrar</button>
-			<a href="#"><button type="submit" class="btn-sm btn-primary" style="float:right">Criar Conta</button></a>
-		</form>
-		</div>
-		</div>
-    </body>
-	<footer>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-	</footer>
-</html>`)
-
-func templatesIndexHtmlBytes() ([]byte, error) {
-	return _templatesIndexHtml, nil
+	//return _templatesIndexHTML, nil
 }
 
-func templatesIndexHtml() (*asset, error) {
-	bytes, err := templatesIndexHtmlBytes()
+func templatesIndexHTML() (*asset, error) {
+	bytes, err := templatesIndexHTMLBytes()
 	if err != nil {
 		return nil, err
 	}
@@ -114,7 +73,7 @@ func templatesIndexHtml() (*asset, error) {
 	return a, nil
 }
 
-var _templatesNavigation_barHtml = []byte(`<!-- Navigation Bar -->
+var _templatesNavigationBarHTML = []byte(`<!-- Navigation Bar -->
 <nav class="navbar navbar-light bg-light">
     <div class="container">
         <span class="navbar-brand">Brand</span>
@@ -133,12 +92,12 @@ var _templatesNavigation_barHtml = []byte(`<!-- Navigation Bar -->
     </div>
 </nav>`)
 
-func templatesNavigation_barHtmlBytes() ([]byte, error) {
-	return _templatesNavigation_barHtml, nil
+func templatesNavigationBarHTMLBytes() ([]byte, error) {
+	return _templatesNavigationBarHTML, nil
 }
 
-func templatesNavigation_barHtml() (*asset, error) {
-	bytes, err := templatesNavigation_barHtmlBytes()
+func templatesNavigationBarHTML() (*asset, error) {
+	bytes, err := templatesNavigationBarHTMLBytes()
 	if err != nil {
 		return nil, err
 	}
@@ -148,7 +107,7 @@ func templatesNavigation_barHtml() (*asset, error) {
 	return a, nil
 }
 
-var _templatesSecond_viewHtml = []byte(`<!DOCTYPE html>
+var _templatesSecondViewHTML = []byte(`<!DOCTYPE html>
 <html lang="en">
     <head>
         <!-- Required meta tags -->
@@ -178,12 +137,12 @@ var _templatesSecond_viewHtml = []byte(`<!DOCTYPE html>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 </html>`)
 
-func templatesSecond_viewHtmlBytes() ([]byte, error) {
-	return _templatesSecond_viewHtml, nil
+func templatesSecondViewHTMLBytes() ([]byte, error) {
+	return _templatesSecondViewHTML, nil
 }
 
-func templatesSecond_viewHtml() (*asset, error) {
-	bytes, err := templatesSecond_viewHtmlBytes()
+func templatesSecondViewHTML() (*asset, error) {
+	bytes, err := templatesSecondViewHTMLBytes()
 	if err != nil {
 		return nil, err
 	}
@@ -193,7 +152,7 @@ func templatesSecond_viewHtml() (*asset, error) {
 	return a, nil
 }
 
-var _templatesThird_viewHtml = []byte(`<!DOCTYPE html>
+var _templatesThirdViewHTML = []byte(`<!DOCTYPE html>
 <html lang="en">
     <head>
         <!-- Required meta tags -->
@@ -235,12 +194,12 @@ var _templatesThird_viewHtml = []byte(`<!DOCTYPE html>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 </html>`)
 
-func templatesThird_viewHtmlBytes() ([]byte, error) {
-	return _templatesThird_viewHtml, nil
+func templatesThirdViewHTMLBytes() ([]byte, error) {
+	return _templatesThirdViewHTML, nil
 }
 
-func templatesThird_viewHtml() (*asset, error) {
-	bytes, err := templatesThird_viewHtmlBytes()
+func templatesThirdViewHTML() (*asset, error) {
+	bytes, err := templatesThirdViewHTMLBytes()
 	if err != nil {
 		return nil, err
 	}
@@ -250,14 +209,14 @@ func templatesThird_viewHtml() (*asset, error) {
 	return a, nil
 }
 
-var _staticNavigation_barCss = []byte(``)
+var _staticNavigationBarCSS = []byte(``)
 
-func staticNavigation_barCssBytes() ([]byte, error) {
-	return _staticNavigation_barCss, nil
+func staticNavigationBarCSSBytes() ([]byte, error) {
+	return _staticNavigationBarCSS, nil
 }
 
-func staticNavigation_barCss() (*asset, error) {
-	bytes, err := staticNavigation_barCssBytes()
+func staticNavigationBarCSS() (*asset, error) {
+	bytes, err := staticNavigationBarCSSBytes()
 	if err != nil {
 		return nil, err
 	}
@@ -267,16 +226,16 @@ func staticNavigation_barCss() (*asset, error) {
 	return a, nil
 }
 
-var _staticStyleCss = []byte(`h1, h2, h3, h4, h5 {
+var _staticStyleCSS = []byte(`h1, h2, h3, h4, h5 {
     text-align: center;
 }`)
 
-func staticStyleCssBytes() ([]byte, error) {
-	return _staticStyleCss, nil
+func staticStyleCSSBytes() ([]byte, error) {
+	return _staticStyleCSS, nil
 }
 
-func staticStyleCss() (*asset, error) {
-	bytes, err := staticStyleCssBytes()
+func staticStyleCSS() (*asset, error) {
+	bytes, err := staticStyleCSSBytes()
 	if err != nil {
 		return nil, err
 	}
@@ -286,7 +245,7 @@ func staticStyleCss() (*asset, error) {
 	return a, nil
 }
 
-var _staticThird_viewCss = []byte(`.result-box {
+var _staticThirdViewCSS = []byte(`.result-box {
     margin-top: 50px;
 }
 
@@ -294,12 +253,12 @@ var _staticThird_viewCss = []byte(`.result-box {
     text-decoration: underline;
 }`)
 
-func staticThird_viewCssBytes() ([]byte, error) {
-	return _staticThird_viewCss, nil
+func staticThirdViewCSSBytes() ([]byte, error) {
+	return _staticThirdViewCSS, nil
 }
 
-func staticThird_viewCss() (*asset, error) {
-	bytes, err := staticThird_viewCssBytes()
+func staticThirdViewCSS() (*asset, error) {
+	bytes, err := staticThirdViewCSSBytes()
 	if err != nil {
 		return nil, err
 	}
@@ -361,13 +320,13 @@ func AssetNames() []string {
 
 // _bindata is a table, holding each asset generator, mapped to its name.
 var _bindata = map[string]func() (*asset, error){
-	"templates/index.html":          templatesIndexHtml,
-	"templates/navigation_bar.html": templatesNavigation_barHtml,
-	"templates/second_view.html":    templatesSecond_viewHtml,
-	"templates/third_view.html":     templatesThird_viewHtml,
-	"static/navigation_bar.css":     staticNavigation_barCss,
-	"static/style.css":              staticStyleCss,
-	"static/third_view.css":         staticThird_viewCss,
+	"templates/index.html":          templatesIndexHTML,
+	"templates/navigation_bar.html": templatesNavigationBarHTML,
+	"templates/second_view.html":    templatesSecondViewHTML,
+	"templates/third_view.html":     templatesThirdViewHTML,
+	"static/navigation_bar.css":     staticNavigationBarCSS,
+	"static/style.css":              staticStyleCSS,
+	"static/third_view.css":         staticThirdViewCSS,
 }
 
 // AssetDir returns the file names below a certain
@@ -412,15 +371,15 @@ type bintree struct {
 
 var _bintree = &bintree{nil, map[string]*bintree{
 	"static": &bintree{nil, map[string]*bintree{
-		"navigation_bar.css": &bintree{staticNavigation_barCss, map[string]*bintree{}},
-		"style.css":          &bintree{staticStyleCss, map[string]*bintree{}},
-		"third_view.css":     &bintree{staticThird_viewCss, map[string]*bintree{}},
+		"navigation_bar.css": &bintree{staticNavigationBarCSS, map[string]*bintree{}},
+		"style.css":          &bintree{staticStyleCSS, map[string]*bintree{}},
+		"third_view.css":     &bintree{staticThirdViewCSS, map[string]*bintree{}},
 	}},
 	"templates": &bintree{nil, map[string]*bintree{
-		"index.html":          &bintree{templatesIndexHtml, map[string]*bintree{}},
-		"navigation_bar.html": &bintree{templatesNavigation_barHtml, map[string]*bintree{}},
-		"second_view.html":    &bintree{templatesSecond_viewHtml, map[string]*bintree{}},
-		"third_view.html":     &bintree{templatesThird_viewHtml, map[string]*bintree{}},
+		"index.html":          &bintree{templatesIndexHTML, map[string]*bintree{}},
+		"navigation_bar.html": &bintree{templatesNavigationBarHTML, map[string]*bintree{}},
+		"second_view.html":    &bintree{templatesSecondViewHTML, map[string]*bintree{}},
+		"third_view.html":     &bintree{templatesThirdViewHTML, map[string]*bintree{}},
 	}},
 }}
 
