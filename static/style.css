@@ -4,6 +4,14 @@ body {
     width: 100%;
 }
 
+.div-center{
+    margin-left: 10vh;
+}
+
+.navbar {
+    opacity: 0.9;
+}
+
 .b {
     background-image: url("/static/img.png");
     width: 100%;
@@ -69,10 +77,15 @@ h5 {
 
 @media screen and (min-width: 480px) and (max-width: 2000px) {
     .hello {
-        margin-left: -30%;
+        margin-left: -20%;
     }
 }
 
-.navbar {
-    opacity: 0.9;
+@media screen and (max-width: 480px) {
+    .div-center{
+        margin-left: 0;
+    }
+    .navbar-brand {
+        margin-left: 10vh;
+    }
 }

@@ -169,8 +169,7 @@ func staticStyleCSS() (*asset, error) {
 	if err != nil {
 		return nil, err
 	}
-	fmt.Printf("test")
-	info := bindataFileInfo{name: "static/style.css", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+	info := bindataFileInfo{name: "/static/style.css", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }

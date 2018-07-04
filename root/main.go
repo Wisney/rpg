@@ -80,7 +80,7 @@ func Start(cfg Config) *HTMLServer {
 	router.HandleFunc("/third/{number}", ThirdHandler)
 	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
 	router.HandleFunc("/favicon.ico", faviconHandler)
-	router.HandleFunc("/img", img)
+	router.HandleFunc("/img", imgHandler)
 
 	// Create the HTML Server
 	htmlServer := HTMLServer{
@@ -111,7 +111,7 @@ func faviconHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "static/favicon.ico")
 }
 
-func img(w http.ResponseWriter, r *http.Request) {
+func imgHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "image/png")
 	http.ServeFile(w, r, "static/img.png")
 }

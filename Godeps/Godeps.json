@@ -7,9 +7,43 @@
 	],
 	"Deps": [
 		{
+			"ImportPath": "github.com/go-pg/pg",
+			"Comment": "v6.14.1",
+			"Rev": "48e94fc53e445c36d95d24a83afd34adf5a00f94"
+		},
+		{
+			"ImportPath": "github.com/go-pg/pg/internal",
+			"Comment": "v6.14.1",
+			"Rev": "48e94fc53e445c36d95d24a83afd34adf5a00f94"
+		},
+		{
+			"ImportPath": "github.com/go-pg/pg/internal/parser",
+			"Comment": "v6.14.1",
+			"Rev": "48e94fc53e445c36d95d24a83afd34adf5a00f94"
+		},
+		{
+			"ImportPath": "github.com/go-pg/pg/internal/pool",
+			"Comment": "v6.14.1",
+			"Rev": "48e94fc53e445c36d95d24a83afd34adf5a00f94"
+		},
+		{
+			"ImportPath": "github.com/go-pg/pg/orm",
+			"Comment": "v6.14.1",
+			"Rev": "48e94fc53e445c36d95d24a83afd34adf5a00f94"
+		},
+		{
+			"ImportPath": "github.com/go-pg/pg/types",
+			"Comment": "v6.14.1",
+			"Rev": "48e94fc53e445c36d95d24a83afd34adf5a00f94"
+		},
+		{
 			"ImportPath": "github.com/gorilla/mux",
 			"Comment": "v1.6.2-3-gcb46983",
 			"Rev": "cb4698366aa625048f3b815af6a0dea8aef9280a"
+		},
+		{
+			"ImportPath": "github.com/jinzhu/inflection",
+			"Rev": "04140366298a54a039076d798123ffa108fff46c"
 		}
 	]
 }
