@@ -4,12 +4,32 @@ body {
     width: 100%;
 }
 
-.div-center{
+input{
+    font-size: 17px;
+}
+
+.div-center {
+    margin-top: 10vh;
     margin-left: 10vh;
+    max-width: 350px;
 }
 
 .navbar {
     opacity: 0.9;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: darkgray;
+    border-radius: 12px;
+}
+
+.btn-sm {
+    padding: 2px;
+}
+
+.btn-md {
+    font-size: 22px;
 }
 
 .b {
@@ -65,14 +85,12 @@ h5 {
 
 .login {
     opacity: 0.9;
-    width: 30%;
-    height: 25%;
+    /*width: 30%;
+    height: 25%;*/
     min-width: 200px;
-    margin-left: 25%;
-}
-
-.btn-primary {
-    border-radius: 12px;
+    background-color: gray;
+    border-radius: 10px;
+    margin-left: -10%;
 }
 
 @media screen and (min-width: 480px) and (max-width: 2000px) {
@@ -82,8 +100,12 @@ h5 {
 }
 
 @media screen and (max-width: 480px) {
-    .div-center{
+    .div-center {
         margin-left: 0;
+    }
+    .login {
+        margin-left: 0;
+        border: 0;
     }
     .navbar-brand {
         margin-left: 10vh;

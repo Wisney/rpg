@@ -5,6 +5,7 @@ import (
 	"context"
 	"fmt"
 	"html/template"
+	"io/ioutil"
 	"net/http"
 	"os"
 	"os/signal"
@@ -75,12 +76,14 @@ func Start(cfg Config) *HTMLServer {
 	// Setup Handlers
 	router := mux.NewRouter()
 
+	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
+
 	router.HandleFunc("/", HomeHandler)
 	router.HandleFunc("/second", SecondHandler)
 	router.HandleFunc("/third/{number}", ThirdHandler)
-	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
 	router.HandleFunc("/favicon.ico", faviconHandler)
 	router.HandleFunc("/img", imgHandler)
+	router.HandleFunc("/createaccount", createAccountHandler)
 
 	// Create the HTML Server
 	htmlServer := HTMLServer{
@@ -169,8 +172,33 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	push(w, "/static/navigation_bar.css")
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 
+	//get html file
+	formSignin, err := ioutil.ReadFile("./pages/form_signin.html")
+	if err != nil {
+		fmt.Print(err)
+	}
+
 	fullData := map[string]interface{}{
 		"NavigationBar": template.HTML(navigationBarHTML),
+		"Page":          template.HTML(formSignin),
+	}
+	render(w, r, homepageTpl, "homepage_view", fullData)
+}
+
+// createAccountHandler renders the homepage view template
+func createAccountHandler(w http.ResponseWriter, r *http.Request) {
+	push(w, "/static/style.css")
+	push(w, "/static/navigation_bar.css")
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+
+	formSignup, err := ioutil.ReadFile("./pages/form_signup.html")
+	if err != nil {
+		fmt.Print(err)
+	}
+
+	fullData := map[string]interface{}{
+		"NavigationBar": template.HTML(navigationBarHTML),
+		"Page":          template.HTML(formSignup),
 	}
 	render(w, r, homepageTpl, "homepage_view", fullData)
 }
