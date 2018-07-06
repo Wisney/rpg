@@ -84,6 +84,7 @@ func Start(cfg Config) *HTMLServer {
 	router.HandleFunc("/favicon.ico", faviconHandler)
 	router.HandleFunc("/img", imgHandler)
 	router.HandleFunc("/createaccount", createAccountHandler)
+	router.HandleFunc("/character", characterHandler)
 
 	// Create the HTML Server
 	htmlServer := HTMLServer{
@@ -199,6 +200,23 @@ func createAccountHandler(w http.ResponseWriter, r *http.Request) {
 	fullData := map[string]interface{}{
 		"NavigationBar": template.HTML(navigationBarHTML),
 		"Page":          template.HTML(formSignup),
+	}
+	render(w, r, homepageTpl, "homepage_view", fullData)
+}
+
+func characterHandler(w http.ResponseWriter, r *http.Request) {
+	push(w, "/static/style.css")
+	push(w, "/static/navigation_bar.css")
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+
+	characterSheet, err := ioutil.ReadFile("./pages/character_sheet.html")
+	if err != nil {
+		fmt.Print(err)
+	}
+
+	fullData := map[string]interface{}{
+		"NavigationBar": template.HTML(navigationBarHTML),
+		"Page":          template.HTML(characterSheet),
 	}
 	render(w, r, homepageTpl, "homepage_view", fullData)
 }
