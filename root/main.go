@@ -11,6 +11,7 @@ import (
 	"os/signal"
 	"rpg/assets"
 	"strconv"
+	"strings"
 	"sync"
 	"time"
 
@@ -83,7 +84,8 @@ func Start(cfg Config) *HTMLServer {
 	router.HandleFunc("/third/{number}", ThirdHandler)
 	router.HandleFunc("/favicon.ico", faviconHandler)
 	router.HandleFunc("/img", imgHandler)
-	router.HandleFunc("/createaccount", createAccountHandler)
+	router.HandleFunc("/createaccount", getCreateAccountHandler).Methods("GET")
+	router.HandleFunc("/createaccount", postCreateAccountHandler).Methods("POST")
 	router.HandleFunc("/character", characterHandler)
 
 	// Create the HTML Server
@@ -179,44 +181,11 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Print(err)
 	}
 
-	fullData := map[string]interface{}{
-		"NavigationBar": template.HTML(navigationBarHTML),
-		"Page":          template.HTML(formSignin),
-	}
-	render(w, r, homepageTpl, "homepage_view", fullData)
-}
-
-// createAccountHandler renders the homepage view template
-func createAccountHandler(w http.ResponseWriter, r *http.Request) {
-	push(w, "/static/style.css")
-	push(w, "/static/navigation_bar.css")
-	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-
-	formSignup, err := ioutil.ReadFile("./pages/form_signup.html")
-	if err != nil {
-		fmt.Print(err)
-	}
+	page := strings.Replace(string(formSignin), "{{.Message}}", "E aew os caras! e.e", 1)
 
 	fullData := map[string]interface{}{
 		"NavigationBar": template.HTML(navigationBarHTML),
-		"Page":          template.HTML(formSignup),
-	}
-	render(w, r, homepageTpl, "homepage_view", fullData)
-}
-
-func characterHandler(w http.ResponseWriter, r *http.Request) {
-	push(w, "/static/style.css")
-	push(w, "/static/navigation_bar.css")
-	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-
-	characterSheet, err := ioutil.ReadFile("./pages/character_sheet.html")
-	if err != nil {
-		fmt.Print(err)
-	}
-
-	fullData := map[string]interface{}{
-		"NavigationBar": template.HTML(navigationBarHTML),
-		"Page":          template.HTML(characterSheet),
+		"Page":          template.HTML(page),
 	}
 	render(w, r, homepageTpl, "homepage_view", fullData)
 }
