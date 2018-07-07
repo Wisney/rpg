@@ -47,7 +47,7 @@ input{
     font-weight: bold;
     opacity: 1;
     width: 25%;
-    min-width: 100px;
+    min-width: 135px;
 }
 
 .hello {
@@ -81,6 +81,19 @@ h5 {
     opacity: 0.55;
     z-index: -1;
     background-repeat: no-repeat;
+}
+
+.collapse-small{
+    margin: 10%;
+    background-color: white;
+    border-radius: 12px;
+    size: 10%;
+}
+
+.nav-link{
+    font-size: 16px;
+    border:2px darkgray solid;
+    border-radius: 12px;
 }
 
 .login {
