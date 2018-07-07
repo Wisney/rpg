@@ -97,6 +97,12 @@ h5 {
     .hello {
         margin-left: -20%;
     }
+    .div-nav-big{
+        display: contents;
+    }
+    .div-nav-small{
+        display: none;
+    }
 }
 
 @media screen and (max-width: 480px) {
@@ -109,5 +115,13 @@ h5 {
     }
     .navbar-brand {
         margin-left: 10vh;
+    }
+    .div-nav-big{
+        display: none;
+    }
+    .div-nav-small{
+        display: block;
+        padding-left: 22%;
+        text-align: center;
     }
 }
