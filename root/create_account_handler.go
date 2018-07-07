@@ -47,7 +47,7 @@ func postCreateAccountHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Print(err)
 	}
 
-	page := strings.Replace(string(formSignin), "{{.Message}}", "Cadastrado com Sucesso!", 1)
+	page := strings.Replace(string(formSignin), "{{.Message}}", "Cadastrado com Sucesso!<br> Logue agora!", 1)
 
 	fullData := map[string]interface{}{
 		"NavigationBar": template.HTML(navigationBarHTML),

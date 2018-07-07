@@ -85,7 +85,7 @@ func Start(cfg Config) *HTMLServer {
 	router.HandleFunc("/favicon.ico", faviconHandler)
 	router.HandleFunc("/img", imgHandler)
 	router.HandleFunc("/createaccount", getCreateAccountHandler).Methods("GET")
-	router.HandleFunc("/createaccount", getCreateAccountHandler).Methods("POST")
+	router.HandleFunc("/createaccount", postCreateAccountHandler).Methods("POST")
 	router.HandleFunc("/character", characterHandler)
 
 	// Create the HTML Server
