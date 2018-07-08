@@ -146,4 +146,12 @@ h5 {
     .navbar-brand {
         margin-left: 10vh;
     }
+    .div-nav-big{
+        display: none;
+    }
+    .div-nav-small{
+        display: block;
+        text-align: center;
+        margin-left: 20%;
+    }
 }
