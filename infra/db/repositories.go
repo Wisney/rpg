@@ -1,4 +1,4 @@
-package infra
+package db
 
 import (
 	"fmt"
@@ -180,7 +180,7 @@ type RaceDisadvantage struct {
 //*****************************
 //
 
-func createSchema(db *pg.DB) error {
+func createSchemas(db *pg.DB) error {
 	for _, model := range []interface{}{
 		(*Userr)(nil),
 		(*Character)(nil),
@@ -210,12 +210,26 @@ func createSchema(db *pg.DB) error {
 	return nil
 }
 
+func CreateSchema(db *pg.DB) error {
+	for _, model := range []interface{}{
+		(*Userr)(nil),
+	} {
+		err := db.CreateTable(model, &orm.CreateTableOptions{
+			FKConstraints: true,
+		})
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
 //TestConnection .-.
 func TestConnection() {
 	db := GetConnect()
 	defer db.Close()
 
-	err := createSchema(db)
+	err := createSchemas(db)
 	if err != nil {
 		panic(err)
 	}
@@ -267,4 +281,13 @@ func TestConnection() {
 	fmt.Println(userStored.Characters[0])
 	fmt.Println(users)
 	fmt.Println(charStored)
+}
+
+//ExistEmail return if email exist in db
+func ExistEmail(email string) bool {
+	db := GetConnect()
+	defer db.Close()
+
+	userr := db.Model(new(Userr)).Where("email = ?", email).Select()
+	return userr == nil
 }
