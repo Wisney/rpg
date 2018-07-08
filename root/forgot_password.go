@@ -58,6 +58,7 @@ func postForgotPasswordHandler(w http.ResponseWriter, r *http.Request) {
 
 		page = strings.Replace(page, "{{.Message}}", "Sou noob, esqueci a Senha!", 1)
 		page = strings.Replace(page, "{{.Warning}}", string(warning), 1)
+
 	} else {
 		warning, err := ioutil.ReadFile("./pages/warnings/email_invalid.html")
 		if err != nil {

@@ -7,6 +7,11 @@
 	],
 	"Deps": [
 		{
+			"ImportPath": "github.com/dgrijalva/jwt-go",
+			"Comment": "v3.2.0",
+			"Rev": "06ea1031745cb8b3dab3f6a236daf2b0aa468b7e"
+		},
+		{
 			"ImportPath": "github.com/go-pg/pg",
 			"Comment": "v6.14.1",
 			"Rev": "48e94fc53e445c36d95d24a83afd34adf5a00f94"
@@ -44,6 +49,11 @@
 		{
 			"ImportPath": "github.com/jinzhu/inflection",
 			"Rev": "04140366298a54a039076d798123ffa108fff46c"
+		},
+		{
+			"ImportPath": "gopkg.in/gomail.v2",
+			"Comment": "2.0.0-23-g81ebce5",
+			"Rev": "81ebce5c23dfd25c6c67194b37d3dd3f338c98b1"
 		}
 	]
 }

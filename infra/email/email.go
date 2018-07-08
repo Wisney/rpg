@@ -3,6 +3,7 @@ package email
 import (
 	"fmt"
 	"io/ioutil"
+	"os"
 	"strings"
 
 	gomail "gopkg.in/gomail.v2"
@@ -32,7 +33,7 @@ func SendForgotPasswordEmail(emailTo string, token string) {
 
 	title := "[The Noobs] Redefinir Senha"
 	text := string(forgotpassword)
-	text = strings.Replace(text, "{{.Token}}", token, 1)
+	text = strings.Replace(text, "{{.LinkWithToken}}", os.Getenv("SITE")+"/resetpassword/"+token, 1)
 
 	SendEmail(emailTo, title, text)
 }
