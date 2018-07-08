@@ -1,8 +1,6 @@
 package main
 
 import (
-	"crypto/sha256"
-	"encoding/base64"
 	"fmt"
 	"html/template"
 	"io/ioutil"
@@ -41,7 +39,7 @@ func postCreateAccountHandler(w http.ResponseWriter, r *http.Request) {
 
 	nick := r.FormValue("nick")
 	email := r.FormValue("email")
-	password := encryptPassword(r.FormValue("password"))
+	password := r.FormValue("password")
 
 	fmt.Println(nick)
 	fmt.Println(email)
@@ -61,9 +59,4 @@ func postCreateAccountHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	render(w, r, homepageTpl, "homepage_view", fullData)
-}
-
-func encryptPassword(password string) string {
-	h := sha256.Sum256([]byte(password))
-	return base64.StdEncoding.EncodeToString(h[:])
 }

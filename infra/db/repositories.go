@@ -1,6 +1,8 @@
 package db
 
 import (
+	"crypto/sha256"
+	"encoding/base64"
 	"fmt"
 	"time"
 
@@ -210,20 +212,6 @@ func createSchemas(db *pg.DB) error {
 	return nil
 }
 
-func CreateSchema(db *pg.DB) error {
-	for _, model := range []interface{}{
-		(*Userr)(nil),
-	} {
-		err := db.CreateTable(model, &orm.CreateTableOptions{
-			FKConstraints: true,
-		})
-		if err != nil {
-			return err
-		}
-	}
-	return nil
-}
-
 //TestConnection .-.
 func TestConnection() {
 	db := GetConnect()
@@ -290,4 +278,19 @@ func ExistEmail(email string) bool {
 
 	userr := db.Model(new(Userr)).Where("email = ?", email).Select()
 	return userr == nil
+}
+
+//UpdatePasswordByEmail update to new password and return sucess bool
+func UpdatePasswordByEmail(email string, newPassword string) bool {
+	db := GetConnect()
+	defer db.Close()
+
+	newPassword = encryptPassword(newPassword)
+	_, err := db.Model(new(Userr)).Set("password = ?", newPassword).Where("email = ?", email).Update()
+	return err == nil
+}
+
+func encryptPassword(password string) string {
+	h := sha256.Sum256([]byte(password))
+	return base64.StdEncoding.EncodeToString(h[:])
 }

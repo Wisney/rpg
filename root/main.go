@@ -94,6 +94,9 @@ func Start(cfg Config) *HTMLServer {
 	router.HandleFunc("/forgotpassword", getForgotPasswordHandler).Methods("GET")
 	router.HandleFunc("/forgotpassword", postForgotPasswordHandler).Methods("POST")
 
+	router.HandleFunc("/resetpassword/{token}", getResetPasswordHandler).Methods("GET")
+	router.HandleFunc("/resetpassword/{token}", postResetPasswordHandler).Methods("POST")
+
 	// Create the HTML Server
 	htmlServer := HTMLServer{
 		server: &http.Server{

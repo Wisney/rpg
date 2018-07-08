@@ -40,8 +40,6 @@ func postForgotPasswordHandler(w http.ResponseWriter, r *http.Request) {
 
 	email := r.FormValue("email")
 
-	fmt.Println(email)
-
 	forgotpassword, err := ioutil.ReadFile("./pages/forgot_password.html")
 	if err != nil {
 		fmt.Print(err)

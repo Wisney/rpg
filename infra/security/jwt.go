@@ -34,10 +34,11 @@ func GetEmailFromForgotPasswordToken(tokenString string) (string, error) {
 	})
 
 	email := ""
-	if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
-		email = claims["email"].(string)
-		fmt.Println(email)
+	if token != nil {
+		if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
+			email = claims["email"].(string)
+			fmt.Println(email)
+		}
 	}
-
 	return email, err
 }
