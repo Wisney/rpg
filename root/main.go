@@ -77,6 +77,7 @@ func Start(cfg Config) *HTMLServer {
 	// Setup Handlers
 	router := mux.NewRouter()
 
+	//basic routes
 	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
 
 	router.HandleFunc("/", HomeHandler)
@@ -84,9 +85,15 @@ func Start(cfg Config) *HTMLServer {
 	router.HandleFunc("/third/{number}", ThirdHandler)
 	router.HandleFunc("/favicon.ico", faviconHandler)
 	router.HandleFunc("/img", imgHandler)
+
+	//account routes
+	router.HandleFunc("/character", characterHandler)
+
 	router.HandleFunc("/createaccount", getCreateAccountHandler).Methods("GET")
 	router.HandleFunc("/createaccount", postCreateAccountHandler).Methods("POST")
-	router.HandleFunc("/character", characterHandler)
+
+	router.HandleFunc("/forgotpassword", getForgotPasswordHandler).Methods("GET")
+	router.HandleFunc("/forgotpassword", postForgotPasswordHandler).Methods("POST")
 
 	// Create the HTML Server
 	htmlServer := HTMLServer{
