@@ -1,4 +1,6 @@
-
+.fonte1{
+    font-family:fantasy,serif;
+}
 input{
     font-size: 17px;
 }
@@ -24,13 +26,7 @@ input{
     border-radius: 12px;
 }
 
-.btn-sm {
-    padding: 2px;
-}
 
-.btn-md {
-    font-size: 22px;
-}
 
 .b {
     background-image: url("/static/img.png");
@@ -53,6 +49,7 @@ input{
     font-weight: bold;
     opacity: 1;
     min-width: 100px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 h1,
@@ -116,10 +113,10 @@ h5 {
     opacity: 0.9;
     /*width: 30%;
     height: 25%;*/
-    min-width: 200px;
+    
     background-color: gray;
     border-radius: 10px;
-    margin-left: -10%;
+    
 }
 
 @media screen and (min-width: 481px) and (max-width: 2000px) {
