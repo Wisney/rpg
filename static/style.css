@@ -22,8 +22,9 @@ input{
 
 .btn-danger {
     background-color: #dc3545;
-    border-color: darkgray;
+    border-color:white;
     border-radius: 12px;
+    border-style: outset;
 }
 
 
@@ -151,3 +152,7 @@ h5 {
         margin-left: 20%;
     }
 }
+.textWhite{
+    color:white;
+}
+.pull-right {float: right;}
