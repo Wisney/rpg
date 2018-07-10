@@ -4,12 +4,12 @@
     <form class="login shadow p-3 mb-5 bg-gray rounded" method="post" action="/createaccount">
         <div>
             <div class="form-group">
-                <label for="nick" class="form-control l">Nick ou Email:</label>
+                <label for="nick" class="form-control l">Nick:</label>
                 <input type="text" class="form-control" name="nick" aria-describedby="id" placeholder="Escreva seu nick: " size="35" required>
                 {{.NickError}}
             </div>
             <div class="form-group">
-                <label for="email" class="form-control l">email:</label>
+                <label for="email" class="form-control l">Email:</label>
                 <input type="email" class="form-control" name="email" aria-describedby="email" placeholder="Escreva nick ou email" size="35" required>
                 {{.EmailError}}
             </div>

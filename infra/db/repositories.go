@@ -271,6 +271,11 @@ func TestConnection() {
 	fmt.Println(charStored)
 }
 
+func encryptPassword(password string) string {
+	h := sha256.Sum256([]byte(password))
+	return base64.StdEncoding.EncodeToString(h[:])
+}
+
 //ExistEmail return if email exist in db
 func ExistEmail(email string) bool {
 	db := GetConnect()
@@ -278,6 +283,15 @@ func ExistEmail(email string) bool {
 
 	userr := db.Model(new(Userr)).Where("email = ?", email).Select()
 	return userr == nil
+}
+
+//ExistNick return if nick exist in db
+func ExistNick(nick string) bool {
+	db := GetConnect()
+	defer db.Close()
+
+	err := db.Model(new(Userr)).Where("name = ?", nick).Select()
+	return err == nil
 }
 
 //UpdatePasswordByEmail update to new password and return sucess bool
@@ -290,7 +304,17 @@ func UpdatePasswordByEmail(email string, newPassword string) bool {
 	return err == nil
 }
 
-func encryptPassword(password string) string {
-	h := sha256.Sum256([]byte(password))
-	return base64.StdEncoding.EncodeToString(h[:])
+//CreateUser insert new user and return sucess bool
+func CreateUser(nick string, email string, password string) (*Userr, error) {
+	db := GetConnect()
+	defer db.Close()
+
+	user := &Userr{
+		Name:     nick,
+		Email:    email,
+		Password: encryptPassword(password),
+	}
+	err := db.Insert(user)
+
+	return user, err
 }
