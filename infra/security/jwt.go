@@ -23,6 +23,24 @@ func GenerateForgotPasswordToken(email string) string {
 	return tokenString
 }
 
+//GenerateLoginToken return the token with user informations
+func GenerateLoginToken(id int8, nick string, email string, access int8) string {
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
+		"id":     id,
+		"nick":   nick,
+		"email":  email,
+		"access": access,
+	})
+
+	tokenString, err := token.SignedString(key)
+
+	if err != nil {
+		panic(err)
+	}
+
+	return tokenString
+}
+
 //GetEmailFromForgotPasswordToken return the emailToken jwt
 func GetEmailFromForgotPasswordToken(tokenString string) (string, error) {
 	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {

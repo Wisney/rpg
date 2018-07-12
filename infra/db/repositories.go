@@ -10,6 +10,8 @@ import (
 	"github.com/go-pg/pg/orm"
 )
 
+import jwt "rpg/infra/security"
+
 //Userr data to login
 type Userr struct {
 	ID         int8
@@ -317,4 +319,26 @@ func CreateUser(nick string, email string, password string) (*Userr, error) {
 	err := db.Insert(user)
 
 	return user, err
+}
+
+//Signin try find user by nick or email, and password. Returning token if success
+func Signin(identifier string, password string) (string, error) {
+	db := GetConnect()
+	defer db.Close()
+
+	password = encryptPassword(password)
+	var user *Userr
+	err := db.Model(user).Where("name = ? and password = ?", identifier, password).Select()
+
+	if err != nil {
+		err = db.Model(user).Where("email = ? and password = ?", identifier, password).Select()
+	}
+
+	token := ""
+	if err != nil {
+		token = jwt.GenerateLoginToken(user.ID, user.Name, user.Email, user.Access)
+		fmt.Println("token: ", token)
+	}
+
+	return token, err
 }

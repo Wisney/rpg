@@ -58,8 +58,8 @@ func postCreateAccountHandler(w http.ResponseWriter, r *http.Request) {
 		}
 		errorString := string(nickErrorByte) + string(nickErrorByte)
 
-		nickError = strings.Replace(errorString, "{{.Message}}", nick, 1)
-		nickError = strings.Replace(nickError, "{{.Message}}", "Já está sendo usado!", 1)
+		nickError = strings.Replace(errorString, "{{.Error}}", nick, 1)
+		nickError = strings.Replace(nickError, "{{.Error}}", "Já está sendo usado!", 1)
 		errorPage = true
 	}
 
@@ -70,8 +70,8 @@ func postCreateAccountHandler(w http.ResponseWriter, r *http.Request) {
 		}
 		errorString := string(emailErrorByte) + string(emailErrorByte)
 
-		emailError = strings.Replace(errorString, "{{.Message}}", email, 1)
-		emailError = strings.Replace(emailError, "{{.Message}}", "Já está sendo usado!", 1)
+		emailError = strings.Replace(errorString, "{{.Error}}", email, 1)
+		emailError = strings.Replace(emailError, "{{.Error}}", "Já está sendo usado!", 1)
 		errorPage = true
 	}
 
@@ -82,7 +82,7 @@ func postCreateAccountHandler(w http.ResponseWriter, r *http.Request) {
 		}
 		errorString := string(passwordErrorByte)
 
-		passError += strings.Replace(errorString, "{{.Message}}", "Password vazio! ¬¬", 1)
+		passError += strings.Replace(errorString, "{{.Error}}", "Password vazio! ¬¬", 1)
 		errorPage = true
 	}
 
