@@ -209,3 +209,17 @@ h5 {
         font-size: 0.65rem;
     }
 }
+
+.sheet-extern {
+    border-style: dashed;
+    border-width: 8px;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.sheet-title {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.sheet-h2 {
+    text-shadow: none;
+}
