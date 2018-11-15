@@ -10,6 +10,7 @@ import (
 	"os"
 	"os/signal"
 	"rpg/assets"
+	"rpg/infra/db"
 	"strconv"
 	"sync"
 	"time"
@@ -28,6 +29,17 @@ func main() {
 		Host:         "0.0.0.0:" + os.Getenv("PORT"),
 		ReadTimeout:  5 * time.Second,
 		WriteTimeout: 5 * time.Second,
+	}
+
+	if !db.Exist() {
+		fmt.Println("Tables not exist! Trying create...")
+		err := db.CreateSchemas()
+		if err != nil {
+			fmt.Println(err)
+			fmt.Println("main : shutting down")
+			os.Exit(1)
+		}
+		fmt.Println("Tables Created!")
 	}
 
 	htmlServer := Start(serverCfg)
@@ -194,6 +206,12 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		"NavigationBar": template.HTML(navigationBarHTML),
 		"Page":          template.HTML(formSignin),
 	}
+
+	cookie, err := r.Cookie("Authorization")
+	if err == nil {
+		fmt.Println("cookie: ", cookie.Value)
+	}
+
 	render(w, r, homepageTpl, "homepage_view", fullData)
 }
 
