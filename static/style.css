@@ -49,6 +49,7 @@ input {
     opacity: 1;
     background-repeat: no-repeat;
     background-size: cover;
+    background-color: black;
 }
 
 .l {
@@ -138,6 +139,14 @@ h5 {
 
 }
 
+.textWhite {
+    color: white;
+}
+
+.pull-right {
+    float: right;
+}
+
 @media screen and (min-width: 481px) and (max-width: 2000px) {
     .hello {
         margin-left: -20%;
@@ -149,6 +158,10 @@ h5 {
 
     .div-nav-small {
         display: none;
+    }
+
+    .g-recaptcha {
+        margin-bottom: 10px;
     }
 }
 
@@ -179,12 +192,20 @@ h5 {
     .hello {
         padding-left: 0%;
     }
+
+    .g-recaptcha {
+        transform: scale(0.73);
+        transform-origin: 0 0;
+    }
+
+    .textWhite {
+        color: white;
+        font-size: 0.8rem;
+    }
 }
 
-.textWhite {
-    color: white;
-}
-
-.pull-right {
-    float: right;
+@media screen and (max-width: 280px) {
+    .textWhite {
+        font-size: 0.65rem;
+    }
 }
