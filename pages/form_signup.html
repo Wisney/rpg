@@ -22,6 +22,8 @@
                         <input type="password" class="form-control" name="password" placeholder="Password" required>
                         {{.PasswordError}}
                     </div>
+                    {{.CaptchaError}}
+                    <div class="g-recaptcha" data-sitekey="6LeZ3noUAAAAAJZxswZk5ZE4Bh2Dfwy621Sxu8PU" required></div>
                     <button type="submit" class="btn-lg btn-danger">Cadastrar</button>
                     <a href="/" class="btn-sm btn-danger" style="float:right;font-size: 14px;border:2px darkgray solid;margin-top: 4px;"
                         role="button">

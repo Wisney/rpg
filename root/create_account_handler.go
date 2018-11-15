@@ -1,12 +1,17 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"html/template"
 	"io/ioutil"
+	"log"
 	"net/http"
+	"net/url"
+	"os"
 	db "rpg/infra/db"
 	"strings"
+	"time"
 )
 
 // getCreateAccountHandler renders the homepage view template
@@ -24,11 +29,13 @@ func getCreateAccountHandler(w http.ResponseWriter, r *http.Request) {
 	page = strings.Replace(string(page), "{{.NickError}}", "", 1)
 	page = strings.Replace(string(page), "{{.EmailError}}", "", 1)
 	page = strings.Replace(string(page), "{{.PasswordError}}", "", 1)
+	page = strings.Replace(string(page), "{{.CaptchaError}}", "", 1)
 
 	fullData := map[string]interface{}{
 		"NavigationBar": template.HTML(navigationBarHTML),
 		"Page":          template.HTML(page),
 	}
+
 	render(w, r, homepageTpl, "homepage_view", fullData)
 }
 
@@ -41,14 +48,19 @@ func postCreateAccountHandler(w http.ResponseWriter, r *http.Request) {
 	nick := r.FormValue("nick")
 	email := r.FormValue("email")
 	password := r.FormValue("password")
+	recaptcha := r.FormValue("g-recaptcha-response")
 
-	fmt.Println(nick)
+	/* fmt.Println(nick)
 	fmt.Println(email)
 	fmt.Println(password)
+	fmt.Println(recaptcha) */
+
+	validCaptcha := reCaptchaRequest(recaptcha)
 
 	nickError := ""
 	emailError := ""
 	passError := ""
+	captchaError := ""
 
 	errorPage := false
 	if db.ExistNick(nick) {
@@ -86,7 +98,20 @@ func postCreateAccountHandler(w http.ResponseWriter, r *http.Request) {
 		errorPage = true
 	}
 
+	if !validCaptcha {
+		captchaErrorByte, err := ioutil.ReadFile("./pages/warnings/generic_invalid.html")
+		if err != nil {
+			fmt.Print(err)
+		}
+		errorString := string(captchaErrorByte)
+
+		captchaError += strings.Replace(errorString, "{{.Error}}", "Marque o reCAPTCHA!", 1)
+		errorPage = true
+	}
+
 	if !errorPage {
+		//signup and create token
+
 		home, err := ioutil.ReadFile("./pages/home.html")
 		if err != nil {
 			fmt.Print(err)
@@ -98,6 +123,11 @@ func postCreateAccountHandler(w http.ResponseWriter, r *http.Request) {
 			"NavigationBar": template.HTML(navigationBarHTML),
 			"Page":          template.HTML(page),
 		}
+
+		//Set Authorization token
+		expire := time.Now().Add(7 * 24 * time.Hour) // Expires in 7 days
+		cookie := http.Cookie{Name: "Authorization", Value: "test", Path: "/", Expires: expire, MaxAge: 604800, HttpOnly: true, Secure: false}
+		http.SetCookie(w, &cookie)
 
 		render(w, r, homepageTpl, "homepage_view", fullData)
 	} else {
@@ -111,11 +141,37 @@ func postCreateAccountHandler(w http.ResponseWriter, r *http.Request) {
 		page = strings.Replace(string(page), "{{.NickError}}", nickError, 1)
 		page = strings.Replace(string(page), "{{.EmailError}}", emailError, 1)
 		page = strings.Replace(string(page), "{{.PasswordError}}", passError, 1)
+		page = strings.Replace(string(page), "{{.CaptchaError}}", captchaError, 1)
 
 		fullData := map[string]interface{}{
 			"NavigationBar": template.HTML(navigationBarHTML),
 			"Page":          template.HTML(page),
 		}
+
 		render(w, r, homepageTpl, "homepage_view", fullData)
 	}
+}
+
+//reCaptchaRequest send a post to google/recaptcha to verify integrity
+func reCaptchaRequest(captcha string) bool {
+
+	formData := url.Values{
+		"secret":   {os.Getenv("RECAPTCHA")},
+		"response": {captcha},
+	}
+
+	resp, err := http.PostForm("https://www.google.com/recaptcha/api/siteverify", formData)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	var result map[string]interface{}
+
+	json.NewDecoder(resp.Body).Decode(&result)
+
+	if result["success"] == nil {
+		return false
+	}
+
+	return result["success"].(bool)
 }

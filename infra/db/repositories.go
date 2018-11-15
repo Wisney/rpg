@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/go-pg/pg"
 	"github.com/go-pg/pg/orm"
 )
 
@@ -42,6 +41,7 @@ type Character struct {
 	Hp            int8
 	Mp            int8
 	Exp           int8
+	Rpg           int8
 	Items         map[string]string `pg:",hstore"`
 	Register      time.Time         `sql:"default:now()"`
 	Updated       time.Time
@@ -113,7 +113,17 @@ type Report struct {
 	ID       int8
 	Title    string
 	Text     string
+	RPG      int8
 	Register time.Time `sql:"default:now()"`
+}
+
+//Rpg are information
+type Rpg struct {
+	ID          int8
+	Name        string
+	Style       string
+	Description string
+	Register    time.Time `sql:"default:now()"`
 }
 
 //
@@ -184,7 +194,10 @@ type RaceDisadvantage struct {
 //*****************************
 //
 
-func createSchemas(db *pg.DB) error {
+//CreateSchemas create all tables
+func CreateSchemas() error {
+	db := GetConnect()
+	defer db.Close()
 	for _, model := range []interface{}{
 		(*Userr)(nil),
 		(*Character)(nil),
@@ -202,15 +215,30 @@ func createSchemas(db *pg.DB) error {
 		(*RaceAdvantage)(nil),
 		(*RaceDisadvantage)(nil),
 		(*RaceExpertise)(nil),
+		(*Rpg)(nil),
 	} {
 		err := db.CreateTable(model, &orm.CreateTableOptions{
-			Temp:          true,
+			Temp:          false,
 			FKConstraints: true,
 		})
 		if err != nil {
+			fmt.Println(err)
 			return err
 		}
 	}
+
+	rpg := []interface{}{
+		&Rpg{ID: 1, Style: "3D&T"},
+	}
+
+	for _, v := range rpg {
+		err := db.Insert(v)
+		if err != nil {
+			fmt.Println(err)
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -219,7 +247,7 @@ func TestConnection() {
 	db := GetConnect()
 	defer db.Close()
 
-	err := createSchemas(db)
+	err := CreateSchemas()
 	if err != nil {
 		panic(err)
 	}
@@ -341,4 +369,19 @@ func Signin(identifier string, password string) (string, error) {
 	}
 
 	return token, err
+}
+
+//Exist return if db exist
+func Exist() bool {
+	db := GetConnect()
+	defer db.Close()
+
+	rpg := new(Rpg)
+	err := db.Model(rpg).Order("id DESC").Limit(1).Select()
+
+	if err != nil {
+		fmt.Println(err)
+		return false
+	}
+	return true
 }
