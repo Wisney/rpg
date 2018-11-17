@@ -355,17 +355,22 @@ func Signin(identifier string, password string) (string, error) {
 	defer db.Close()
 
 	password = encryptPassword(password)
-	var user *Userr
-	err := db.Model(user).Where("name = ? and password = ?", identifier, password).Select()
 
-	if err != nil {
-		err = db.Model(user).Where("email = ? and password = ?", identifier, password).Select()
-	}
+	user := new(Userr)
+
+	err := db.Model(user).
+		Where("password = ?", password).
+		WhereGroup(func(q *orm.Query) (*orm.Query, error) {
+			q = q.WhereOr("name = ? ", identifier).
+				WhereOr("email = ? ", identifier)
+			return q, nil
+		}).
+		Limit(1).
+		Select()
 
 	token := ""
-	if err != nil {
-		token = jwt.GenerateLoginToken(user.ID, user.Name, user.Email, user.Access)
-		fmt.Println("token: ", token)
+	if err == nil {
+		token = jwt.GenerateLoginToken(user.ID, user.Name, user.Access)
 	}
 
 	return token, err

@@ -14,7 +14,7 @@ import jwt "rpg/infra/security"
 // getForgotPasswordHandler renders the homepage view template
 func getForgotPasswordHandler(w http.ResponseWriter, r *http.Request) {
 	push(w, "/static/style.css")
-	push(w, "/static/navigation_bar.css")
+	navbar(w, r)
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 
 	forgotpassword, err := ioutil.ReadFile("./pages/forgot_password.html")
@@ -35,7 +35,7 @@ func getForgotPasswordHandler(w http.ResponseWriter, r *http.Request) {
 // postForgotPasswordHandler renders the homepage view template
 func postForgotPasswordHandler(w http.ResponseWriter, r *http.Request) {
 	push(w, "/static/style.css")
-	push(w, "/static/navigation_bar.css")
+	navbar(w, r)
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 
 	email := r.FormValue("email")

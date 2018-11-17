@@ -5,42 +5,13 @@
             <div class="btn-md btn-danger nav-link noob">
                 <a class="navbar-brand" href="/">The Noobs</a>
             </div>
-
-            <ul class="nav justify-content-end">
-                <div style="padding-right: 10px">
-                    <li class="nav-item">
-                        <a id="homeNav" class="nav-link btn-sm btn-basic" href="/">Home</a>
-                    </li>
-                </div>
-                <div style="padding-right: 10px">
-                    <li class="nav-item">
-                        <a id="secondNav" class="nav-link btn-sm btn-basic" href="/character">Personagem</a>
-                    </li>
-                </div>
-                <div>
-                    <li class="nav-item">
-                        <a id="thirdNav" class="nav-link btn-sm btn-basic" href="/createaccount">Criar Conta</a>
-                    </li>
-                </div>
-            </ul>
+            {{.navbar-menu}}
         </div>
         <div class="div-nav-small">
             <button class="btn-md btn-danger" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
                 The Noobs
             </button>
-
-            <div id="collapse1" class="panel-collapse collapse">
-                <div class="collapse-small">
-                    <a id="homeNav" class="nav-link btn-sm btn-basic" href="/">Home</a>
-                </div>
-                <div class="collapse-small">
-                    <a id="secondNav" class="nav-link btn-sm btn-basic" href="/character">Personagem</a>
-                </div>
-                <div class="collapse-small">
-                    <a id="thirdNav" class="nav-link btn-sm btn-basic" href="/createaccount">Criar Conta</a>
-                </div>
-                </ul>
-            </div>
+            {{.collapsed-navbar-menu}}
         </div>
     </div>
     </div>

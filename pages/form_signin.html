@@ -6,16 +6,17 @@
 
             <h2 class="hello ">Welcome!</h2>
 
-            <form class="login shadow p-3 mb-5 bg-gray rounded">
+            <form class="login shadow p-3 mb-5 bg-gray rounded" method="post" action="/">
+                {{.LoginError}}
                 <div>
                     <div class="form-group">
                         <label for="nick" class="form-control l">Nick ou Email:</label>
-                        <input type="text" class="form-control" id="nick" aria-describedby="nick" required placeholder="Escreva nick ou email"
+                        <input type="text" class="form-control" id="nick" name="nick" aria-describedby="nick" required placeholder="Escreva nick ou email"
                             size="35" autocomplete="username">
                     </div>
                     <div class="form-group">
                         <label for="password" class="form-control l ">Password:</label>
-                        <input type="password" class="form-control" id="password" placeholder="Password" required
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" required
                             autocomplete="current-password">
                     </div>
 

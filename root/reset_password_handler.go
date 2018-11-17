@@ -15,7 +15,7 @@ import (
 
 func getResetPasswordHandler(w http.ResponseWriter, r *http.Request) {
 	push(w, "/static/style.css")
-	push(w, "/static/navigation_bar.css")
+	navbar(w, r)
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 
 	forgotpassword, err := ioutil.ReadFile("./pages/reset_password.html")
@@ -39,7 +39,7 @@ func getResetPasswordHandler(w http.ResponseWriter, r *http.Request) {
 
 func postResetPasswordHandler(w http.ResponseWriter, r *http.Request) {
 	push(w, "/static/style.css")
-	push(w, "/static/navigation_bar.css")
+	navbar(w, r)
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 
 	password := r.FormValue("password")
