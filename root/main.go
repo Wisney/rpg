@@ -11,7 +11,6 @@ import (
 	"os/signal"
 	"rpg/assets"
 	"rpg/infra/db"
-	"strconv"
 	"sync"
 	"time"
 
@@ -91,13 +90,14 @@ func Start(cfg Config) *HTMLServer {
 	//basic routes
 	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
 
-	router.HandleFunc("/", HomeHandler)
-	router.HandleFunc("/second", SecondHandler)
-	router.HandleFunc("/third/{number}", ThirdHandler)
 	router.HandleFunc("/favicon.ico", faviconHandler)
 	router.HandleFunc("/img", imgHandler)
 
 	//account routes
+	router.HandleFunc("/", getHomeHandler).Methods("GET")
+	router.HandleFunc("/logout", getLogoutHomeHandler).Methods("GET")
+	router.HandleFunc("/", postHomeHandler).Methods("POST")
+
 	router.HandleFunc("/character", characterHandler)
 
 	router.HandleFunc("/createaccount", getCreateAccountHandler).Methods("GET")
@@ -188,51 +188,6 @@ func push(w http.ResponseWriter, resource string) {
 	}
 }
 
-// Route Handlers
-
-// HomeHandler renders the homepage view template
-func HomeHandler(w http.ResponseWriter, r *http.Request) {
-	push(w, "/static/style.css")
-	push(w, "/static/navigation_bar.css")
-	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-
-	//get html file
-	formSignin, err := ioutil.ReadFile("./pages/form_signin.html")
-	if err != nil {
-		fmt.Print(err)
-	}
-
-	fullData := map[string]interface{}{
-		"NavigationBar": template.HTML(navigationBarHTML),
-		"Page":          template.HTML(formSignin),
-	}
-
-	cookie, err := r.Cookie("Authorization")
-	if err == nil {
-		fmt.Println("cookie: ", cookie.Value)
-	}
-
-	render(w, r, homepageTpl, "homepage_view", fullData)
-}
-
-// createAccountHandler renders the homepage view template
-func createAccountHandler(w http.ResponseWriter, r *http.Request) {
-	push(w, "/static/style.css")
-	push(w, "/static/navigation_bar.css")
-	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-
-	formSignup, err := ioutil.ReadFile("./pages/form_signup.html")
-	if err != nil {
-		fmt.Print(err)
-	}
-
-	fullData := map[string]interface{}{
-		"NavigationBar": template.HTML(navigationBarHTML),
-		"Page":          template.HTML(formSignup),
-	}
-	render(w, r, homepageTpl, "homepage_view", fullData)
-}
-
 func characterHandler(w http.ResponseWriter, r *http.Request) {
 	push(w, "/static/style.css")
 	push(w, "/static/navigation_bar.css")
@@ -248,37 +203,4 @@ func characterHandler(w http.ResponseWriter, r *http.Request) {
 		"Page":          template.HTML(characterSheet),
 	}
 	render(w, r, homepageTpl, "homepage_view", fullData)
-}
-
-// SecondHandler renders the second view template
-func SecondHandler(w http.ResponseWriter, r *http.Request) {
-	push(w, "/static/style.css")
-	push(w, "/static/navigation_bar.css")
-	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-
-	fullData := map[string]interface{}{
-		"NavigationBar": template.HTML(navigationBarHTML),
-	}
-	render(w, r, secondViewTpl, "second_view", fullData)
-}
-
-// ThirdHandler renders the third view template
-func ThirdHandler(w http.ResponseWriter, r *http.Request) {
-	push(w, "/static/style.css")
-	push(w, "/static/navigation_bar.css")
-	push(w, "/static/third_view.css")
-	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-
-	var queryString string
-	pathVariables := mux.Vars(r)
-	queryNumber, err := strconv.Atoi(pathVariables["number"])
-	if err != nil {
-		queryString = pathVariables["number"]
-	}
-	fullData := map[string]interface{}{
-		"NavigationBar": template.HTML(navigationBarHTML),
-		"Number":        queryNumber,
-		"StringQuery":   queryString,
-	}
-	render(w, r, thirdViewTpl, "third_view", fullData)
 }

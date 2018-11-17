@@ -10,14 +10,14 @@ import (
 	"net/url"
 	"os"
 	db "rpg/infra/db"
+	jwt "rpg/infra/security"
 	"strings"
-	"time"
 )
 
 // getCreateAccountHandler renders the homepage view template
 func getCreateAccountHandler(w http.ResponseWriter, r *http.Request) {
 	push(w, "/static/style.css")
-	push(w, "/static/navigation_bar.css")
+	navbar(w, r)
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 
 	formSignup, err := ioutil.ReadFile("./pages/form_signup.html")
@@ -42,7 +42,7 @@ func getCreateAccountHandler(w http.ResponseWriter, r *http.Request) {
 // postCreateAccountHandler renders the homepage view template
 func postCreateAccountHandler(w http.ResponseWriter, r *http.Request) {
 	push(w, "/static/style.css")
-	push(w, "/static/navigation_bar.css")
+	navbar(w, r)
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 
 	nick := r.FormValue("nick")
@@ -110,24 +110,24 @@ func postCreateAccountHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if !errorPage {
-		//signup and create token
-
 		home, err := ioutil.ReadFile("./pages/home.html")
 		if err != nil {
 			fmt.Print(err)
 		}
 
-		page := strings.Replace(string(home), "{{.Message}}", "Logado!", 1)
+		page := strings.Replace(string(home), "{{.Message}}", "", 1)
 
 		fullData := map[string]interface{}{
 			"NavigationBar": template.HTML(navigationBarHTML),
 			"Page":          template.HTML(page),
 		}
 
-		//Set Authorization token
-		expire := time.Now().Add(7 * 24 * time.Hour) // Expires in 7 days
-		cookie := http.Cookie{Name: "Authorization", Value: "test", Path: "/", Expires: expire, MaxAge: 604800, HttpOnly: true, Secure: false}
-		http.SetCookie(w, &cookie)
+		//signup and create token
+		db.CreateUser(nick, email, password)
+
+		token, err := db.Signin(nick, password)
+
+		jwt.SetCookieToken(w, token)
 
 		render(w, r, homepageTpl, "homepage_view", fullData)
 	} else {
