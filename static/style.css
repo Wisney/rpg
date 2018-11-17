@@ -204,7 +204,7 @@ h5 {
     }
 }
 
-@media screen and (max-width: 280px) {
+@media screen and (max-width: 180px) {
     .textWhite {
         font-size: 0.65rem;
     }
@@ -212,8 +212,9 @@ h5 {
 
 .sheet-extern {
     border-style: dashed;
-    border-width: 8px;
+    border-width: 4px;
     background-color: rgba(255, 255, 255, 0.9);
+    height: 100%;
 }
 
 .sheet-title {
@@ -222,4 +223,87 @@ h5 {
 
 .sheet-h2 {
     text-shadow: none;
+}
+
+.form {
+    width: 630px;
+}
+
+#ficha {
+    height: 40px;
+    width: 580px;
+    background: lightgray;
+    padding: 2px;
+    margin-left:25px;
+    background:#CDC9C9;
+}
+
+label {
+    color:#FFF;
+    font-weight: 800;
+}
+#container {
+    width: 100%;
+    border-color: blue;
+    text-align: center;
+}
+
+.box {
+    float: left;
+    width: 270px; 
+    height: 100%;
+    margin: 10px 20px;
+    margin-left:25px;
+}
+.atributos {
+    background:#CDC9C9;
+    width: 268px;
+    height: 35px;
+    margin-top:5px;
+    text-align: left;
+}
+
+.textAtributos {
+    padding: 5px;
+}
+.inputAttr {
+    width: 30px;
+    border:1px solid #000;
+    float: right;
+    margin-right:5px;
+}
+
+.atts {
+    color:#696969;
+}
+
+.notes {
+    border:1px solid #000;
+    background-attachment: local;
+    background-image:
+        linear-gradient(to right, white 10px, transparent 10px),
+        linear-gradient(to left, white 10px, transparent 10px),
+        repeating-linear-gradient(white, white 30px, #ccc 30px, #ccc 31px, white 31px);
+    line-height: 31px;
+    padding: 8px 10px;
+    resize: none;
+}
+
+.container-textarea-vantagens, .container-textarea-desvantagens  {
+    display: flex;
+    flex-direction: column;
+}
+.sMoney {
+    display:inline-block;
+    width: 235px;
+}
+
+.ClassMoney {
+    border:1px solid #000;
+    width: 25px;
+    margin-bottom:5px;
+}
+
+#DivPontos {
+    display:inline-block;
 }
