@@ -229,7 +229,7 @@ h5 {
     width: 630px;
 }
 
-#ficha {
+.ficha {
     height: 40px;
     width: 580px;
     background: lightgray;
@@ -238,11 +238,11 @@ h5 {
     background:#CDC9C9;
 }
 
-label {
+.label-sheet {
     color:#FFF;
     font-weight: 800;
 }
-#container {
+.container-sheet {
     width: 100%;
     border-color: blue;
     text-align: center;
@@ -255,7 +255,7 @@ label {
     margin: 10px 20px;
     margin-left:25px;
 }
-.atributos {
+.attributes {
     background:#CDC9C9;
     width: 268px;
     height: 35px;
@@ -263,7 +263,7 @@ label {
     text-align: left;
 }
 
-.textAtributos {
+.textAttribute {
     padding: 5px;
 }
 .inputAttr {
@@ -298,12 +298,12 @@ label {
     width: 235px;
 }
 
-.ClassMoney {
+.classMoney {
     border:1px solid #000;
     width: 25px;
     margin-bottom:5px;
 }
 
-#DivPontos {
+.divPoints {
     display:inline-block;
 }

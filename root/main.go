@@ -190,7 +190,7 @@ func push(w http.ResponseWriter, resource string) {
 
 func characterHandler(w http.ResponseWriter, r *http.Request) {
 	push(w, "/static/style.css")
-	push(w, "/static/navigation_bar.css")
+	navbar(w,r)
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 
 	characterSheet, err := ioutil.ReadFile("./pages/character_sheet.html")
