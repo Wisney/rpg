@@ -11,6 +11,7 @@ import (
 	"os/signal"
 	"rpg/assets"
 	"rpg/infra/db"
+	"strings"
 	"sync"
 	"time"
 
@@ -99,6 +100,7 @@ func Start(cfg Config) *HTMLServer {
 	router.HandleFunc("/", postHomeHandler).Methods("POST")
 
 	router.HandleFunc("/character", characterHandler)
+	router.HandleFunc("/manual", manualHandler)
 
 	router.HandleFunc("/createaccount", getCreateAccountHandler).Methods("GET")
 	router.HandleFunc("/createaccount", postCreateAccountHandler).Methods("POST")
@@ -190,7 +192,7 @@ func push(w http.ResponseWriter, resource string) {
 
 func characterHandler(w http.ResponseWriter, r *http.Request) {
 	push(w, "/static/style.css")
-	navbar(w,r)
+	navbar(w, r)
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 
 	characterSheet, err := ioutil.ReadFile("./pages/character_sheet.html")
@@ -201,6 +203,25 @@ func characterHandler(w http.ResponseWriter, r *http.Request) {
 	fullData := map[string]interface{}{
 		"NavigationBar": template.HTML(navigationBarHTML),
 		"Page":          template.HTML(characterSheet),
+	}
+	render(w, r, homepageTpl, "homepage_view", fullData)
+}
+
+func manualHandler(w http.ResponseWriter, r *http.Request) {
+	push(w, "/static/style.css")
+	navbar(w, r)
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+
+	page, err := ioutil.ReadFile("./pages/manual.html")
+	if err != nil {
+		fmt.Print(err)
+	}
+
+	manual := strings.Replace(string(page), "{{.Link}}", "https://drive.google.com/file/d/1AAVaPK-2CpcObvVBJdf_6Cp4TSxP8jr-/preview", 3)
+
+	fullData := map[string]interface{}{
+		"NavigationBar": template.HTML(navigationBarHTML),
+		"Page":          template.HTML(manual),
 	}
 	render(w, r, homepageTpl, "homepage_view", fullData)
 }

@@ -1,18 +1,18 @@
 <!-- Navigation Bar -->
 <nav class="navbar navbar-light bg-light" style="background-color: gray!important;">
-    <div class="container">
-        <div class="div-nav-big">
-            <div class="btn-md btn-danger nav-link noob">
-                <a class="navbar-brand" href="/">The Noobs</a>
+        <div class="container">
+            <div class="div-nav-big">
+                <div class="btn-md btn-danger nav-link noob">
+                    <a class="navbar-brand" href="/">The Noobs</a>
+                </div>
+                {{.navbar-menu}}
             </div>
-            {{.navbar-menu}}
+            <div class="div-nav-small">
+                <button class="btn-md btn-danger" data-toggle="collapse" data-target="#collapse1" aria-expanded="false"
+                    aria-controls="collapse1">
+                    The Noobs
+                </button>
+                {{.collapsed-navbar-menu}}
+            </div>
         </div>
-        <div class="div-nav-small">
-            <button class="btn-md btn-danger" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
-                The Noobs
-            </button>
-            {{.collapsed-navbar-menu}}
-        </div>
-    </div>
-    </div>
 </nav>

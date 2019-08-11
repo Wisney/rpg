@@ -71,7 +71,8 @@ func postHomeHandler(w http.ResponseWriter, r *http.Request) {
 	} else {
 
 		token, err := db.Signin(nick, password)
-
+		fmt.Printf("token: %v\n", token)
+		fmt.Printf("err: %v\n", err)
 		if err != nil {
 			nickErrorByte, err := ioutil.ReadFile("./pages/warnings/generic_invalid.html")
 			if err != nil {
@@ -115,7 +116,7 @@ func postHomeHandler(w http.ResponseWriter, r *http.Request) {
 		page := strings.Replace(string(formSignup), "{{.LoginError}}", loginError, 1)
 		page = strings.Replace(string(page), "{{.Message}}", "Welcome!", 1)
 
-		forceNavbar(w, r, nick)
+		forceNavbar(w, r, "")
 		fullData := map[string]interface{}{
 			"NavigationBar": template.HTML(navigationBarHTML),
 			"Page":          template.HTML(page),

@@ -1,3 +1,7 @@
+body, html {
+    height: 100%;
+  }
+
 .fonte1 {
     font-family: fantasy, serif;
 }
@@ -50,6 +54,8 @@ input {
     background-repeat: no-repeat;
     background-size: cover;
     background-color: black;
+    background-position: center;
+    height: 100%;
 }
 
 .l {
@@ -306,4 +312,12 @@ h5 {
 
 .divPoints {
     display:inline-block;
+}
+
+.fullHeight{
+    height: 100vh;
+}
+
+.fullWidth{
+    width: 100vh;
 }

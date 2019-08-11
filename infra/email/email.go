@@ -39,5 +39,7 @@ func SendForgotPasswordEmail(emailTo string, token string) {
 }
 
 func getEmailManager() *gomail.Dialer {
-	return gomail.NewDialer("smtp.gmail.com", 465, "thenoobsrpg@gmail.com", "porcos00")
+	gmail := gomail.NewDialer("smtp.gmail.com", 587, "thenoobsrpg@gmail.com", "porcos00")
+	//gmail.TLSConfig = &tls.Config{InsecureSkipVerify: true}
+	return gmail
 }
