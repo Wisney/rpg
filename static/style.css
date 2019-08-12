@@ -1,6 +1,7 @@
-body, html {
+body,
+html {
     height: 100%;
-  }
+}
 
 .fonte1 {
     font-family: fantasy, serif;
@@ -231,23 +232,20 @@ h5 {
     text-shadow: none;
 }
 
-.form {
-    width: 630px;
-}
-
 .ficha {
     height: 40px;
     width: 580px;
     background: lightgray;
     padding: 2px;
-    margin-left:25px;
-    background:#CDC9C9;
+    margin-left: 25px;
+    background: #CDC9C9;
 }
 
 .label-sheet {
-    color:#FFF;
+    color: #FFF;
     font-weight: 800;
 }
+
 .container-sheet {
     width: 100%;
     border-color: blue;
@@ -256,35 +254,37 @@ h5 {
 
 .box {
     float: left;
-    width: 270px; 
+    width: 270px;
     height: 100%;
     margin: 10px 20px;
-    margin-left:25px;
+    margin-left: 25px;
 }
+
 .attributes {
-    background:#CDC9C9;
+    background: #CDC9C9;
     width: 268px;
     height: 35px;
-    margin-top:5px;
+    margin-top: 5px;
     text-align: left;
 }
 
 .textAttribute {
     padding: 5px;
 }
+
 .inputAttr {
     width: 30px;
-    border:1px solid #000;
+    border: 1px solid #000;
     float: right;
-    margin-right:5px;
+    margin-right: 5px;
 }
 
 .atts {
-    color:#696969;
+    color: #696969;
 }
 
 .notes {
-    border:1px solid #000;
+    border: 1px solid #000;
     background-attachment: local;
     background-image:
         linear-gradient(to right, white 10px, transparent 10px),
@@ -295,29 +295,60 @@ h5 {
     resize: none;
 }
 
-.container-textarea-vantagens, .container-textarea-desvantagens  {
+.container-textarea-vantagens,
+.container-textarea-desvantagens {
     display: flex;
     flex-direction: column;
 }
+
 .sMoney {
-    display:inline-block;
+    display: inline-block;
     width: 235px;
 }
 
 .classMoney {
-    border:1px solid #000;
+    border: 1px solid #000;
     width: 25px;
-    margin-bottom:5px;
+    margin-bottom: 5px;
 }
 
 .divPoints {
-    display:inline-block;
+    display: inline-block;
 }
 
-.fullHeight{
+.fullHeight {
     height: 100vh;
 }
 
-.fullWidth{
+.fullWidth {
     width: 100vh;
+}
+
+.strokeme {
+    color: white;
+    text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+}
+
+@media (max-width: 768px) {
+    .sheet-margin-left {
+        margin-left: 0 !important;
+        padding: 0%;
+    }
+    .sheet-margin-left2 {
+        margin-left: 1.5em !important;
+        padding: 0%;
+    }
+}
+
+@media (max-width: 425px) {
+    .sheet-margin-left {
+        margin-left: 1.5rem !important;
+    }
+    .main-div-form{
+        margin-right: 5px;
+    }
 }

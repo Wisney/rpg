@@ -1,23 +1,23 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-3 col-md-2 col-sm-1"></div>
-        <div class="col-lg-5 col-lg-8 col-sm-12 ">
+        <div class="col-lg-2 col-md-2 col-sm-1"></div>
+        <div class="col-lg-8 col-md-8 col-sm-12">
             <div class="sheet-extern">
                 <div class="sheet-title">
                     <h2 class="hello sheet-h2">Ficha do Personagem!</h2>
                 </div>
-                <br>
-                <form class="form" method="post" action="#">
-                    <div>
-                        <div class="sheet">
-                            <label class="label-sheet">Nome:</label>
-                            <input type="text" name="nick" aria-describedby="id" placeholder="Escreva seu nick: " size="30"
-                                required>
-                            <div class="divPoints">
-                                <input type="text" size="1.5">
-                                <label class="label-sheet" for="pontos">pontos</label>
-                            </div>
+                <form class="strokeme needs-validation" method="post" action="#" novalidate>
+                    <div class="form-group row main-div-form">
+                        <label
+                            class="sheet-title label-sheet col-form-label col-lg-1 col-md-2 col-sm-12 ml-4">Nome:</label>
+                        <div class="sheet-title sheet-margin-left col-lg-8 col-md-8 col-sm-12 pl-0">
+                            <input class="form-control" type="text" name="nick" aria-describedby="id" required>
                         </div>
+                        <div class="sheet-title sheet-margin-left2 col-lg-1 col-md-2 col-sm-12 pl-0">
+                            <input type="text" class="form-control" name="points">
+                        </div>
+                        <label class="label-sheet sheet-margin-left col-form-label col-lg-1 col-md-2 col-sm-12 sheet-title p-2"
+                            for="pontos">Pontos</label>
                         <div class="container-sheet">
                             <div id="box-1" class="box">
                                 <span id="textChar"> Características</span>
@@ -26,31 +26,38 @@
                                     <input class="inputAttr" type="text" name="inputForce" size="1">
                                 </div>
                                 <div class="attributes">
-                                    <label class="label-sheet textAttribute"> <span class="atts">H</span>abilidade </label>
+                                    <label class="label-sheet textAttribute"> <span class="atts">H</span>abilidade
+                                    </label>
                                     <input class="inputAttr" type="text" name="inputForce" size="1">
                                 </div>
                                 <div class="attributes">
-                                    <label class="label-sheet textAttribute"> <span class="atts">R</span>esistência </label>
+                                    <label class="label-sheet textAttribute"> <span class="atts">R</span>esistência
+                                    </label>
                                     <input class="inputAttr" type="text" name="inputForce" size="1">
                                 </div>
                                 <div class="attributes">
-                                    <label class="label-sheet textAttribute"> <span class="atts">A</span>rmadura </label>
+                                    <label class="label-sheet textAttribute"> <span class="atts">A</span>rmadura
+                                    </label>
                                     <input class="inputAttr" type="text" name="inputForce" size="1">
                                 </div>
                                 <div class="attributes">
-                                    <label class="label-sheet textAttribute"> <span class="atts">P</span>oder de fogo </label>
+                                    <label class="label-sheet textAttribute"> <span class="atts">P</span>oder de fogo
+                                    </label>
                                     <input class="inputAttr" type="text" name="inputForce" size="1">
                                 </div>
                                 <div class="attributes">
-                                    <label class="label-sheet textAttribute"> <span class="atts">P</span>ontos de Vida </label>
+                                    <label class="label-sheet textAttribute"> <span class="atts">P</span>ontos de Vida
+                                    </label>
                                     <input class="inputAttr" type="text" name="inputForce" size="1">
                                 </div>
                                 <div class="attributes">
-                                    <label class="label-sheet textAttribute"> <span class="atts">P</span>ontos de Magia </label>
+                                    <label class="label-sheet textAttribute"> <span class="atts">P</span>ontos de Magia
+                                    </label>
                                     <input class="inputAttr" type="text" name="inputForce" size="1">
                                 </div>
                                 <div class="attributes">
-                                    <label class="label-sheet textAttribute"> <span class="atts">P</span>ontos de Experiência
+                                    <label class="label-sheet textAttribute"> <span class="atts">P</span>ontos de
+                                        Experiência
                                     </label>
                                     <input class="inputAttr" type="text" name="inputForce" size="1">
                                 </div>
@@ -85,8 +92,49 @@
                             </div>
                         </div>
                     </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary btn-pill float-right" id="btnSave" type="submit">
+                            <i class="fas fa-save"></i> Salvar</button>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $(function () {
+        /*
+         * Form validation
+         */
+        $("#registerForm").submit(function (e) {
+            $("#panel").LoadingOverlay("show");
+            $("#btnSave").attr("disabled", true)
+        })
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        $("#btnSave").attr("disabled", false)
+                        $("#panel").LoadingOverlay("hide");
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    });
+    /**
+     * 
+     * Functions
+     */
+    function save() {
+        $("#registerForm").submit()
+    }
+</script>
