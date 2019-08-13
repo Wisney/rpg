@@ -6,7 +6,18 @@
     </div>
     <div style="padding-right: 10px">
         <li class="nav-item">
-            <a id="secondNav" class="nav-link btn-sm btn-basic" target="_blank" href="/manual">Manual</a>
+            <div class="dropdown">
+                <button id="secondNav" class="nav-item text-primary nav-link btn-sm btn-basic dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Manual
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="/manual">Completo</a>
+                  <a class="dropdown-item" href="/manual?topic=magic">Magias</a>
+                  <a class="dropdown-item" href="/manual?topic=skill">Perícias</a>
+                  <a class="dropdown-item" href="/manual?topic=race">Raças</a>
+                  <a class="dropdown-item" href="/manual?topic=advantage">Vantagens e Desvantagens</a>
+                </div>
+              </div>
         </li>
     </div>
     <div>

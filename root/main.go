@@ -217,7 +217,29 @@ func manualHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Print(err)
 	}
 
-	manual := strings.Replace(string(page), "{{.Link}}", "https://drive.google.com/file/d/1AAVaPK-2CpcObvVBJdf_6Cp4TSxP8jr-/preview", 3)
+	keys, ok := r.URL.Query()["topic"]
+
+	link := ""
+
+	if !ok || len(keys[0]) < 1 {
+		link = "https://drive.google.com/file/d/1AAVaPK-2CpcObvVBJdf_6Cp4TSxP8jr-/preview"
+	} else {
+
+		switch string(keys[0]) {
+		case "magic":
+			link = "https://drive.google.com/file/d/1_ut_Mu82w6nRkc0R5wTh7TTEJVdj0seb/preview"
+		case "skill":
+			link = "https://drive.google.com/file/d/1ap3UTGOkc3ib6oBhI7iHSKo7wIycnE7z/preview"
+		case "race":
+			link = "https://drive.google.com/file/d/1dabUBI91i1Zb0x1Nqi1E-qOUYf3yodhd/preview"
+		case "advantage":
+			link = "https://drive.google.com/file/d/12Qk9P4dv88tnCoVnwlMlcmGoIyZCaB0y/preview"
+		default:
+			link = "https://drive.google.com/file/d/1AAVaPK-2CpcObvVBJdf_6Cp4TSxP8jr-/preview"
+		}
+	}
+
+	manual := strings.Replace(string(page), "{{.Link}}", link, 3)
 
 	fullData := map[string]interface{}{
 		"NavigationBar": template.HTML(navigationBarHTML),
