@@ -320,6 +320,10 @@ h5 {
     height: 100vh;
 }
 
+.height-manual {
+    height: 89.99vh;
+}
+
 .fullWidth {
     width: 100vh;
 }
@@ -350,5 +354,11 @@ h5 {
     }
     .main-div-form{
         margin-right: 5px;
+    }
+}
+
+@media (max-width: 320px) {
+    .forgot-font{
+        font-size: 0.7rem
     }
 }

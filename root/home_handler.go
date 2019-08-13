@@ -71,8 +71,6 @@ func postHomeHandler(w http.ResponseWriter, r *http.Request) {
 	} else {
 
 		token, err := db.Signin(nick, password)
-		fmt.Printf("token: %v\n", token)
-		fmt.Printf("err: %v\n", err)
 		if err != nil {
 			nickErrorByte, err := ioutil.ReadFile("./pages/warnings/generic_invalid.html")
 			if err != nil {

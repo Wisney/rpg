@@ -1,7 +1,26 @@
 <ul class="nav justify-content-end">
     <div style="padding-right: 10px">
         <li class="nav-item">
-                <a id="homeNav" class="nav-link btn-sm btn-basic" href="/">{{.name}}</a>
+            <a id="homeNav" class="nav-link btn-sm btn-basic" href="/">{{.name}}</a>
+        </li>
+    </div>
+
+    <div style="padding-right: 10px">
+        <li class="nav-item">
+            <div class="dropdown">
+                <a id="secondNav" class="nav-item text-primary nav-link btn-sm btn-basic dropdown-toggle" href="#"
+                    role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    Manual
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="/manual">Completo</a>
+                    <a class="dropdown-item" href="/manual?topic=magic">Magias</a>
+                    <a class="dropdown-item" href="/manual?topic=skill">Perícias</a>
+                    <a class="dropdown-item" href="/manual?topic=race">Raças</a>
+                    <a class="dropdown-item" href="/manual?topic=advantage">Vantagens e Desvantagens</a>
+                </div>
+            </div>
         </li>
     </div>
     <div>

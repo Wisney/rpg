@@ -1,6 +1,22 @@
 <div id="collapse1" class="panel-collapse collapse">
     <div class="collapse-small">
-            <a id="homeNav" class="nav-link btn-sm btn-basic" href="/">{{.name}}</a>
+        <a id="homeNav" class="nav-link btn-sm btn-basic" href="/">{{.name}}</a>
+    </div>
+    <div class="collapse-small">
+        <div class="dropdown">
+            <a id="secondNav" class="nav-item text-primary nav-link btn-sm btn-basic dropdown-toggle" href="#"
+                role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                Manual
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="/manual">Completo</a>
+                <a class="dropdown-item" href="/manual?topic=magic">Magias</a>
+                <a class="dropdown-item" href="/manual?topic=skill">Perícias</a>
+                <a class="dropdown-item" href="/manual?topic=race">Raças</a>
+                <a class="dropdown-item" href="/manual?topic=advantage">Vantagens e Desvantagens</a>
+            </div>
+        </div>
     </div>
     <div class="collapse-small">
         <a id="thirdNav" class="nav-link btn-sm btn-basic" href="/logout">Sair</a>
