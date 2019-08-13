@@ -320,6 +320,10 @@ h5 {
     height: 100vh;
 }
 
+.nounderline {
+    text-decoration: none !important
+}
+
 .height-manual {
     height: 89vh;
 }
@@ -342,6 +346,7 @@ h5 {
         margin-left: 0 !important;
         padding: 0%;
     }
+
     .sheet-margin-left2 {
         margin-left: 1.5em !important;
         padding: 0%;
@@ -352,13 +357,14 @@ h5 {
     .sheet-margin-left {
         margin-left: 1.5rem !important;
     }
-    .main-div-form{
+
+    .main-div-form {
         margin-right: 5px;
     }
 }
 
 @media (max-width: 320px) {
-    .forgot-font{
+    .forgot-font {
         font-size: 0.7rem
     }
 }
