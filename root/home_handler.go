@@ -89,12 +89,13 @@ func postHomeHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if !errorPage {
-		home, err := ioutil.ReadFile("./pages/home.html")
+		home, err := ioutil.ReadFile("./pages/character_sheet.html")
 		if err != nil {
 			fmt.Print(err)
 		}
 
-		page := strings.Replace(string(home), "{{.Message}}", "Bem Vindo!", 1)
+		//page := strings.Replace(string(home), "{{.Message}}", "Bem Vindo!", 1)
+		page := string(home)
 
 		forceNavbar(w, r, nick)
 

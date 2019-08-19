@@ -346,9 +346,8 @@ h5 {
         margin-left: 0 !important;
         padding: 0%;
     }
-
     .sheet-margin-left2 {
-        margin-left: 1.5em !important;
+        margin-left: 0 !important;
         padding: 0%;
     }
 }
@@ -356,6 +355,10 @@ h5 {
 @media (max-width: 425px) {
     .sheet-margin-left {
         margin-left: 1.5rem !important;
+    }
+
+    .sheet-margin-left2 {
+        margin-left: 0 !important;
     }
 
     .main-div-form {
@@ -366,5 +369,11 @@ h5 {
 @media (max-width: 320px) {
     .forgot-font {
         font-size: 0.7rem
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1100px) {
+    .label-sheet2{
+        padding-right: 10%;
     }
 }

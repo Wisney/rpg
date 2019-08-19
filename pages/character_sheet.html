@@ -9,18 +9,19 @@
                 <form class="strokeme needs-validation" method="post" action="#" novalidate>
                     <div class="form-group row main-div-form">
                         <label
-                            class="sheet-title label-sheet col-form-label col-lg-1 col-md-2 col-sm-12 ml-4">Nome:</label>
+                            class="sheet-title label-sheet label-sheet2 col-form-label col-lg-1 col-md-2 col-sm-12 ml-4">Nome:</label>
                         <div class="sheet-title sheet-margin-left col-lg-8 col-md-8 col-sm-12 pl-0">
-                            <input class="form-control" type="text" name="nick" aria-describedby="id" required>
+                            <input class="form-control" type="text" name="nick" required>
                         </div>
-                        <div class="sheet-title sheet-margin-left2 col-lg-1 col-md-2 col-sm-12 pl-0">
+                        <div class="col-lg-2 col-md-1 col-sm-12"></div>
+                        <label
+                            class="sheet-title label-sheet label-sheet2 col-form-label col-lg-1 col-md-2 col-sm-12 col-4 ml-4">Pontos:</label>
+                        <div class="sheet-title sheet-margin-left2 col-lg-1 col-md-2 col-sm-2 col-4 pl-0">
                             <input type="text" class="form-control" name="points">
                         </div>
-                        <label class="label-sheet sheet-margin-left col-form-label col-lg-1 col-md-2 col-sm-12 sheet-title p-2"
-                            for="pontos">Pontos</label>
                         <div class="container-sheet">
                             <div id="box-1" class="box">
-                                <span id="textChar"> Características</span>
+                                <span id="textChar"><h4>Características</h4></span>
                                 <div class="attributes">
                                     <label class="label-sheet textAttribute"> <span class="atts">F</span>orça </label>
                                     <input class="inputAttr" type="text" name="inputForce" size="1">
@@ -62,31 +63,31 @@
                                     <input class="inputAttr" type="text" name="inputForce" size="1">
                                 </div>
                                 <div class="container-textarea-vantagens">
-                                    <span>Vantagens</span>
+                                    <span><h4>Vantagens</h4></span>
                                     <textarea rows=5 class="notes" name="descVantagem"></textarea>
                                 </div>
                                 <div class="container-textarea-desvantagens">
-                                    <span>Desvantagens</span>
+                                    <span><h4>Desvantagens</h4></span>
                                     <textarea rows=5 class="notes" name="descDesvantagem"></textarea>
                                 </div>
                             </div>
                             <div id="box-2" class="box">
                                 <div class="container-textarea-magiasConhecidas">
-                                    <span>Magias Conhecidas</span>
+                                    <span><h4>Magias Conhecidas</h4></span>
                                     <textarea rows=5 class="notes" name="descMagiasConhecidas"></textarea>
                                 </div>
                                 <div id="money">
-                                    <span> Dinheiro </span> <br>
+                                    <span> <h4>Dinheiro</h4> </span> <br>
                                     <span class="sMoney">Ouro: </span><input type="text" class="classMoney"> <br>
                                     <span class="sMoney">Prata: </span><input type="text" class="classMoney"> <br>
                                     <span class="sMoney">Bronze: </span><input type="text" class="classMoney">
                                 </div>
                                 <div class="container-textarea-magiasConhecidas">
-                                    <span> Itens </span>
+                                    <span><h4> Itens </h4></span>
                                     <textarea rows=5 class="notes" name="descMagiasConhecidas"></textarea>
                                 </div>
                                 <div class="container-textarea-magiasConhecidas">
-                                    <span>História</span>
+                                    <span><h4>História</h4></span>
                                     <textarea rows=5 class="notes" name="descMagiasConhecidas"></textarea>
                                 </div>
                             </div>
@@ -102,8 +103,6 @@
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <script type="text/javascript">
     $(function () {
         /*
