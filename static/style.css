@@ -244,6 +244,12 @@ h5 {
 .label-sheet {
     color: #FFF;
     font-weight: 800;
+    width: 80%;
+}
+
+.label-sheet2 {
+    color: #FFF;
+    font-weight: 800;
 }
 
 .container-sheet {
@@ -262,9 +268,6 @@ h5 {
 
 .attributes {
     background: #CDC9C9;
-    width: 268px;
-    height: 35px;
-    margin-top: 5px;
     text-align: left;
 }
 
@@ -277,22 +280,21 @@ h5 {
     border: 1px solid #000;
     float: right;
     margin-right: 5px;
+    height: 30px;
 }
 
 .atts {
     color: #696969;
 }
 
-.notes {
-    border: 1px solid #000;
-    background-attachment: local;
-    background-image:
-        linear-gradient(to right, white 10px, transparent 10px),
-        linear-gradient(to left, white 10px, transparent 10px),
-        repeating-linear-gradient(white, white 30px, #ccc 30px, #ccc 31px, white 31px);
-    line-height: 31px;
-    padding: 8px 10px;
-    resize: none;
+textarea {
+    background: url(http://i.stack.imgur.com/ynxjD.png) repeat-y;
+    width: 110%;
+    height: 300px;
+    font: normal 14px verdana;
+    line-height: 25px;
+    padding: 2px 10px;
+    border: none;
 }
 
 .container-textarea-vantagens,
@@ -303,7 +305,7 @@ h5 {
 
 .sMoney {
     display: inline-block;
-    width: 235px;
+    width: 200px;
 }
 
 .classMoney {
@@ -346,6 +348,7 @@ h5 {
         margin-left: 0 !important;
         padding: 0%;
     }
+
     .sheet-margin-left2 {
         margin-left: 0 !important;
         padding: 0%;
@@ -373,7 +376,13 @@ h5 {
 }
 
 @media screen and (min-width: 769px) and (max-width: 1100px) {
-    .label-sheet2{
+    .label-sheet2 {
         padding-right: 10%;
     }
+}
+
+.border {
+    border-width: 2px !important;
+    padding-right: 15px;
+    padding-left: 15px;
 }

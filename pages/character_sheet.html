@@ -7,95 +7,123 @@
                     <h2 class="hello sheet-h2">Ficha do Personagem!</h2>
                 </div>
                 <form class="strokeme needs-validation" method="post" action="#" novalidate>
-                    <div class="form-group row main-div-form">
+                    <div class="form-group row main-div-form mb-0">
                         <label
-                            class="sheet-title label-sheet label-sheet2 col-form-label col-lg-1 col-md-2 col-sm-12 ml-4">Nome:</label>
+                            class="sheet-title label-sheet2 label-sheet2 col-form-label col-lg-1 col-md-2 col-sm-12 ml-4">Nome:</label>
                         <div class="sheet-title sheet-margin-left col-lg-8 col-md-8 col-sm-12 pl-0">
-                            <input class="form-control" type="text" name="nick" required>
+                            <input class="form-control" type="text" name="Name" required>
                         </div>
                         <div class="col-lg-2 col-md-1 col-sm-12"></div>
                         <label
-                            class="sheet-title label-sheet label-sheet2 col-form-label col-lg-1 col-md-2 col-sm-12 col-4 ml-4">Pontos:</label>
+                            class="sheet-title label-sheet2 col-form-label col-lg-1 col-md-2 col-sm-12 col-4 ml-4">Pontos:</label>
                         <div class="sheet-title sheet-margin-left2 col-lg-1 col-md-2 col-sm-2 col-4 pl-0">
-                            <input type="text" class="form-control" name="points">
+                            <input type="text" class="form-control" name="Points">
                         </div>
-                        <div class="container-sheet">
-                            <div id="box-1" class="box">
-                                <span id="textChar"><h4>Características</h4></span>
-                                <div class="attributes">
-                                    <label class="label-sheet textAttribute"> <span class="atts">F</span>orça </label>
-                                    <input class="inputAttr" type="text" name="inputForce" size="1">
-                                </div>
-                                <div class="attributes">
-                                    <label class="label-sheet textAttribute"> <span class="atts">H</span>abilidade
+                        <div class="container container-sheet form-group row ml-1 mb-0">
+                            <div id="box-1" class="ml-1 col-lg-4 col-md-8 col-sm-12">
+                                <span id="textChar">
+                                    <h4>Características</h4>
+                                </span>
+                                <div class="mb-1 row attributes">
+                                    <label class="pl-4 label-sheet mb-0"> <span class="atts">F</span>orça
                                     </label>
-                                    <input class="inputAttr" type="text" name="inputForce" size="1">
+                                    <input class="inputAttr" type="text" name="Strength" size="1">
                                 </div>
-                                <div class="attributes">
-                                    <label class="label-sheet textAttribute"> <span class="atts">R</span>esistência
+                                <div class="mb-1 row attributes">
+                                    <label class="pl-4 label-sheet mb-0"> <span class="atts">H</span>abilidade
                                     </label>
-                                    <input class="inputAttr" type="text" name="inputForce" size="1">
+                                    <input class="inputAttr" type="text" name="Ability" size="1">
                                 </div>
-                                <div class="attributes">
-                                    <label class="label-sheet textAttribute"> <span class="atts">A</span>rmadura
+                                <div class="mb-1 row attributes">
+                                    <label class="pl-4 label-sheet mb-0"> <span class="atts">R</span>esistência
                                     </label>
-                                    <input class="inputAttr" type="text" name="inputForce" size="1">
+                                    <input class="inputAttr" type="text" name="Endurance" size="1">
                                 </div>
-                                <div class="attributes">
-                                    <label class="label-sheet textAttribute"> <span class="atts">P</span>oder de fogo
+                                <div class="mb-1 row attributes">
+                                    <label class="pl-4 label-sheet mb-0"> <span class="atts">A</span>rmadura
                                     </label>
-                                    <input class="inputAttr" type="text" name="inputForce" size="1">
+                                    <input class="inputAttr" type="text" name="Armor" size="1">
                                 </div>
-                                <div class="attributes">
-                                    <label class="label-sheet textAttribute"> <span class="atts">P</span>ontos de Vida
+                                <div class="mb-1 row attributes">
+                                    <label class="pl-4 label-sheet mb-0"> <span class="atts">P</span>oder de Fogo
                                     </label>
-                                    <input class="inputAttr" type="text" name="inputForce" size="1">
+                                    <input class="inputAttr" type="text" name="FirePower" size="1">
                                 </div>
-                                <div class="attributes">
-                                    <label class="label-sheet textAttribute"> <span class="atts">P</span>ontos de Magia
-                                    </label>
-                                    <input class="inputAttr" type="text" name="inputForce" size="1">
+
+                                <div class="border border-secondary form-group">
+                                    <div class="mb-1 row attributes">
+                                        <label class="pl-4 label-sheet mb-0"> <span class="atts">P</span>ontos de Vida
+                                        </label>
+                                        <input class="inputAttr m-auto" type="text" name="Hp" size="1">
+                                    </div>
+                                    <div class="mb-1 row attributes">
+                                        <label class="pl-4 label-sheet mb-0"> <span class="atts">P</span>ontos de Magia
+                                        </label>
+                                        <input class="inputAttr m-auto" type="text" name="Mp" size="1">
+                                    </div>
+                                    <div class="mb-1 row attributes">
+                                        <label class="pl-4 label-sheet mb-0"> <span class="atts">P</span>ontos de
+                                            Experiência
+                                        </label>
+                                        <input class="inputAttr m-auto" type="text" name="Exp" size="1">
+                                    </div>
                                 </div>
-                                <div class="attributes">
-                                    <label class="label-sheet textAttribute"> <span class="atts">P</span>ontos de
-                                        Experiência
-                                    </label>
-                                    <input class="inputAttr" type="text" name="inputForce" size="1">
+
+                                <div id="money" class="form-group text-center">
+                                    <span>
+                                        <h4>Dinheiro</h4>
+                                    </span>
+                                    <div class="row">
+                                        <span class="sMoney">Ouro: </span><input type="text" name="Gold"
+                                            class="classMoney">
+                                        <br>
+                                        <span class="sMoney">Prata: </span><input type="text" name="Silver"
+                                            class="classMoney"> <br>
+                                        <span class="sMoney">Bronze: </span><input type="text" name="Bronze"
+                                            class="classMoney">
+                                    </div>
                                 </div>
-                                <div class="container-textarea-vantagens">
-                                    <span><h4>Vantagens</h4></span>
-                                    <textarea rows=5 class="notes" name="descVantagem"></textarea>
+
+                                <div class="form-group container-textarea-vantagens">
+                                    <span>
+                                        <h4>Vantagens</h4>
+                                    </span>
+                                    <textarea rows=5 class="notes" name="Advantages"></textarea>
                                 </div>
                                 <div class="container-textarea-desvantagens">
-                                    <span><h4>Desvantagens</h4></span>
-                                    <textarea rows=5 class="notes" name="descDesvantagem"></textarea>
+                                    <span>
+                                        <h4>Desvantagens</h4>
+                                    </span>
+                                    <textarea rows=5 class="notes" name="Disadvantages"></textarea>
                                 </div>
                             </div>
-                            <div id="box-2" class="box">
+                            <div class="col-sm-0 col-md-2 col-lg-2"></div>
+                            <div id="box-2" class="col-lg-4 col-md-8 col-sm-12">
                                 <div class="container-textarea-magiasConhecidas">
-                                    <span><h4>Magias Conhecidas</h4></span>
-                                    <textarea rows=5 class="notes" name="descMagiasConhecidas"></textarea>
+                                    <span>
+                                        <h4>Magias Conhecidas</h4>
+                                    </span>
+                                    <textarea rows=5 class="notes" name="Spells"></textarea>
                                 </div>
-                                <div id="money">
-                                    <span> <h4>Dinheiro</h4> </span> <br>
-                                    <span class="sMoney">Ouro: </span><input type="text" class="classMoney"> <br>
-                                    <span class="sMoney">Prata: </span><input type="text" class="classMoney"> <br>
-                                    <span class="sMoney">Bronze: </span><input type="text" class="classMoney">
+
+                                <div class="container-textarea-magiasConhecidas">
+                                    <span>
+                                        <h4> Itens </h4>
+                                    </span>
+                                    <textarea rows=5 class="notes" name="Items"></textarea>
                                 </div>
                                 <div class="container-textarea-magiasConhecidas">
-                                    <span><h4> Itens </h4></span>
-                                    <textarea rows=5 class="notes" name="descMagiasConhecidas"></textarea>
+                                    <span>
+                                        <h4>História</h4>
+                                    </span>
+                                    <textarea rows=5 class="notes" name="Histories"></textarea>
                                 </div>
-                                <div class="container-textarea-magiasConhecidas">
-                                    <span><h4>História</h4></span>
-                                    <textarea rows=5 class="notes" name="descMagiasConhecidas"></textarea>
-                                </div>
+                            </div>
+                            <div class="card-footer float-right col-sm-12 mt-1">
+                                <button class="btn btn-primary btn-pill float-right" id="btnSave" type="submit">
+                                    <i class="fas fa-save"></i> Salvar</button>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-footer">
-                        <button class="btn btn-primary btn-pill float-right" id="btnSave" type="submit">
-                            <i class="fas fa-save"></i> Salvar</button>
                     </div>
                 </form>
             </div>
