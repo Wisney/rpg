@@ -1,7 +1,6 @@
 package email
 
 import (
-	"crypto/tls"
 	"fmt"
 	"io/ioutil"
 	"net/url"
@@ -44,6 +43,6 @@ func getEmailManager() *gomail.Dialer {
 	mailman, _ := url.Parse(os.Getenv("MAILMAN"))
 	password, _ := mailman.User.Password()
 	mailDialer := gomail.NewDialer(mailman.Host, 587, mailman.User.Username(), password)
-	mailDialer.TLSConfig = &tls.Config{InsecureSkipVerify: true}
+	//mailDialer.TLSConfig = &tls.Config{InsecureSkipVerify: true}
 	return mailDialer
 }
