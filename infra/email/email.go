@@ -43,5 +43,5 @@ func getEmailManager() *gomail.Dialer {
 	mailman, _ := url.Parse(os.Getenv("MAILMAN"))
 	password, _ := mailman.User.Password()
 	//gmail.TLSConfig = &tls.Config{InsecureSkipVerify: true}
-	return gomail.NewDialer(mailman.Host, 587, mailman.User.Username(), password)
+	return gomail.NewDialer(mailman.Host, 465, mailman.User.Username(), password)
 }
