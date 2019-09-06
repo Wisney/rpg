@@ -3,6 +3,7 @@ package email
 import (
 	"fmt"
 	"io/ioutil"
+	"net/url"
 	"os"
 	"strings"
 
@@ -39,7 +40,8 @@ func SendForgotPasswordEmail(emailTo string, token string) {
 }
 
 func getEmailManager() *gomail.Dialer {
-	gmail := gomail.NewDialer("smtp.gmail.com", 587, "thenoobsrpg@gmail.com", "porcos00")
+	mailman, _ := url.Parse(os.Getenv("MAILMAN"))
+	password, _ := mailman.User.Password()
 	//gmail.TLSConfig = &tls.Config{InsecureSkipVerify: true}
-	return gmail
+	return gomail.NewDialer(mailman.Host, 587, mailman.User.Username(), password)
 }
