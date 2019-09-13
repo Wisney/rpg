@@ -43,7 +43,12 @@ func postCharacterHandler(w http.ResponseWriter, r *http.Request) {
 	character := db.GetCharacter(jwt.GetNickFromRequest(r))
 
 	character.Name = r.FormValue("Name")
+
 	character.Description = r.FormValue("Description")
+
+	character.ID = getInt8FromString(r.FormValue("ID"))
+
+	character.UserID = getInt8FromString(r.FormValue("UserID"))
 
 	character.Points = getInt8FromString(r.FormValue("Points"))
 

@@ -7,6 +7,8 @@
                     <h2 class="hello sheet-h2">Ficha do Personagem!</h2>
                 </div>
                 <form id="formCharacter" class="strokeme needs-validation" method="POST" action="/character" novalidate>
+                    <input type="hidden" name="ID">
+                    <input type="hidden" name="UserID">
                     <div class="form-group row main-div-form mb-0">
                         <label
                             class="sheet-title label-sheet2 label-sheet2 col-form-label col-lg-1 col-md-2 col-sm-12 ml-4">Nome:</label>
@@ -136,11 +138,9 @@
         //get character points and fill on sheet
         $.get("/character/points")
             .done(function (char) {
-                //first is 2 because id and userId
-                for (var i = 2; i < Object.keys(char).length; i++) {
+                for (var i = 0; i < Object.keys(char).length; i++) {
                     let input = $("[name=" + Object.keys(char)[i] + "]")
                     if (input.attr("name")) {
-
                         input.val(Object.values(char)[i])
                     }
                 }
