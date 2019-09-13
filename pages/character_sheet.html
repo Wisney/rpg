@@ -6,7 +6,7 @@
                 <div class="sheet-title">
                     <h2 class="hello sheet-h2">Ficha do Personagem!</h2>
                 </div>
-                <form class="strokeme needs-validation" method="post" action="#" novalidate>
+                <form id="formCharacter" class="strokeme needs-validation" method="POST" action="/character" novalidate>
                     <div class="form-group row main-div-form mb-0">
                         <label
                             class="sheet-title label-sheet2 label-sheet2 col-form-label col-lg-1 col-md-2 col-sm-12 ml-4">Nome:</label>
@@ -69,7 +69,7 @@
                                     </div>
                                 </div>
 
-                                <div id="money" class="form-group text-center">
+                                <div id="money" class="border form-group text-center">
                                     <span>
                                         <h4>Dinheiro</h4>
                                     </span>
@@ -133,35 +133,17 @@
 
 <script type="text/javascript">
     $(function () {
-        /*
-         * Form validation
-         */
-        $("#registerForm").submit(function (e) {
-            $("#panel").LoadingOverlay("show");
-            $("#btnSave").attr("disabled", true)
-        })
-        window.addEventListener('load', function () {
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.getElementsByClassName('needs-validation');
-            // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms, function (form) {
-                form.addEventListener('submit', function (event) {
-                    if (form.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                        $("#btnSave").attr("disabled", false)
-                        $("#panel").LoadingOverlay("hide");
+        //get character points and fill on sheet
+        $.get("/character/points")
+            .done(function (char) {
+                //first is 2 because id and userId
+                for (var i = 2; i < Object.keys(char).length; i++) {
+                    let input = $("[name=" + Object.keys(char)[i] + "]")
+                    if (input.attr("name")) {
+
+                        input.val(Object.values(char)[i])
                     }
-                    form.classList.add('was-validated');
-                }, false);
+                }
             });
-        }, false);
-    });
-    /**
-     * 
-     * Functions
-     */
-    function save() {
-        $("#registerForm").submit()
-    }
+    })
 </script>

@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"context"
+	"encoding/json"
 	"fmt"
 	"html/template"
 	"io/ioutil"
@@ -11,6 +12,7 @@ import (
 	"os/signal"
 	"rpg/assets"
 	"rpg/infra/db"
+	jwt "rpg/infra/security"
 	"strings"
 	"sync"
 	"time"
@@ -99,7 +101,9 @@ func Start(cfg Config) *HTMLServer {
 	router.HandleFunc("/logout", getLogoutHomeHandler).Methods("GET")
 	router.HandleFunc("/", postHomeHandler).Methods("POST")
 
-	router.HandleFunc("/character", characterHandler)
+	router.HandleFunc("/character", getCharacterHandler).Methods("GET")
+	router.HandleFunc("/character/points", getCharacterPointsHandler).Methods("GET")
+	router.HandleFunc("/character", postCharacterHandler).Methods("POST")
 	router.HandleFunc("/manual", manualHandler)
 
 	router.HandleFunc("/createaccount", getCreateAccountHandler).Methods("GET")
@@ -190,23 +194,6 @@ func push(w http.ResponseWriter, resource string) {
 	}
 }
 
-func characterHandler(w http.ResponseWriter, r *http.Request) {
-	push(w, "/static/style.css")
-	navbar(w, r)
-	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-
-	characterSheet, err := ioutil.ReadFile("./pages/character_sheet.html")
-	if err != nil {
-		fmt.Print(err)
-	}
-
-	fullData := map[string]interface{}{
-		"NavigationBar": template.HTML(navigationBarHTML),
-		"Page":          template.HTML(characterSheet),
-	}
-	render(w, r, homepageTpl, "homepage_view", fullData)
-}
-
 func manualHandler(w http.ResponseWriter, r *http.Request) {
 	push(w, "/static/style.css")
 	navbar(w, r)
@@ -246,4 +233,10 @@ func manualHandler(w http.ResponseWriter, r *http.Request) {
 		"Page":          template.HTML(manual),
 	}
 	render(w, r, homepageTpl, "homepage_view", fullData)
+}
+
+func getCharacterPointsHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json; charset=utf-8")
+	character := db.GetCharacter(jwt.GetNickFromRequest(r))
+	json.NewEncoder(w).Encode(character)
 }

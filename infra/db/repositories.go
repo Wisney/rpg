@@ -42,15 +42,15 @@ type Character struct {
 	Mp            int8
 	Exp           int8
 	Rpg           int8
-	Items         map[string]string `pg:",hstore"`
-	Register      time.Time         `sql:"default:now()"`
+	Items         string
+	Register      time.Time `sql:"default:now()"`
 	Updated       time.Time
-	Histories     []*History
+	Histories     string
 	Race          *Race
-	Spells        []*Spell        `pg:"many2many:character_spells"`
-	Expertises    []*Expertise    `pg:"many2many:character_expertises"`
-	Advantages    []*Advantage    `pg:"many2many:character_advantages"`
-	Disadvantages []*Disadvantage `pg:"many2many:character_disadvantages"`
+	Spells        string `pg:"many2many:character_spells"`
+	Expertises    string `pg:"many2many:character_expertises"`
+	Advantages    string `pg:"many2many:character_advantages"`
+	Disadvantages string `pg:"many2many:character_disadvantages"`
 }
 
 //Race of RPG
@@ -389,4 +389,45 @@ func Exist() bool {
 		return false
 	}
 	return true
+}
+
+//GetCharacter return the Character from userId
+func GetCharacter(nick string) *Character {
+	db := GetConnect()
+	defer db.Close()
+	user := new(Userr)
+	err := db.Model(user).Where("userr.name = ?", nick).Select()
+	if err != nil {
+		panic(err)
+	}
+	character := new(Character)
+	err = db.Model(character).Where("character.user_id = ?", user.ID).Select()
+	if err != nil {
+		panic(err)
+	}
+
+	if character.ID == 0 {
+		character := new(Character)
+		character.UserID = user.ID
+
+	}
+	return character
+}
+
+//CreateCharacter create a character
+func CreateCharacter(char *Character) bool {
+	db := GetConnect()
+	defer db.Close()
+
+	err := db.Insert(char)
+	return err == nil
+}
+
+//UpdateCharacter update characters's info
+func UpdateCharacter(char *Character) bool {
+	db := GetConnect()
+	defer db.Close()
+
+	err := db.Update(char)
+	return err == nil
 }

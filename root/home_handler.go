@@ -7,8 +7,9 @@ import (
 	"net/http"
 	"rpg/infra/db"
 	"strings"
+
+	jwt "rpg/infra/security"
 )
-import jwt "rpg/infra/security"
 
 func getHomeHandler(w http.ResponseWriter, r *http.Request) {
 	push(w, "/static/style.css")
