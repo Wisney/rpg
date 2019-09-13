@@ -403,7 +403,7 @@ func GetCharacter(nick string) *Character {
 	character := new(Character)
 	err = db.Model(character).Where("character.user_id = ?", user.ID).Select()
 	if err != nil {
-		character := new(Character)
+		character = new(Character)
 		character.UserID = user.ID
 	}
 
