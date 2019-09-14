@@ -54,6 +54,8 @@ func postCharacterHandler(w http.ResponseWriter, r *http.Request) {
 
 	character.Strength = getInt8FromString(r.FormValue("Strength"))
 
+	character.Ability = getInt8FromString(r.FormValue("Ability"))
+
 	character.Endurance = getInt8FromString(r.FormValue("Endurance"))
 
 	character.Armor = getInt8FromString(r.FormValue("Armor"))
