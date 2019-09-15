@@ -19,7 +19,7 @@
                         <label
                             class="sheet-title label-sheet2 col-form-label col-lg-1 col-md-2 col-sm-12 col-4 ml-4">Pontos:</label>
                         <div class="sheet-title sheet-margin-left2 col-lg-1 col-md-2 col-sm-2 col-4 pl-0">
-                            <input type="text" class="form-control" name="Points">
+                            <input type="text" class="form-control number2Digit" name="Points">
                         </div>
                         <div class="container container-sheet form-group row ml-1 mb-0">
                             <div id="box-1" class="ml-1 col-lg-4 col-md-8 col-sm-12">
@@ -29,45 +29,45 @@
                                 <div class="mb-1 row attributes">
                                     <label class="pl-4 label-sheet mb-0"> <span class="atts">F</span>orça
                                     </label>
-                                    <input class="inputAttr" type="text" name="Strength" size="1">
+                                    <input class="inputAttr number1Digit" type="text" name="Strength" size="1">
                                 </div>
                                 <div class="mb-1 row attributes">
                                     <label class="pl-4 label-sheet mb-0"> <span class="atts">H</span>abilidade
                                     </label>
-                                    <input class="inputAttr" type="text" name="Ability" size="1">
+                                    <input class="inputAttr number1Digit" type="text" name="Ability" size="1">
                                 </div>
                                 <div class="mb-1 row attributes">
                                     <label class="pl-4 label-sheet mb-0"> <span class="atts">R</span>esistência
                                     </label>
-                                    <input class="inputAttr" type="text" name="Endurance" size="1">
+                                    <input class="inputAttr number1Digit" type="text" name="Endurance" size="1">
                                 </div>
                                 <div class="mb-1 row attributes">
                                     <label class="pl-4 label-sheet mb-0"> <span class="atts">A</span>rmadura
                                     </label>
-                                    <input class="inputAttr" type="text" name="Armor" size="1">
+                                    <input class="inputAttr number1Digit" type="text" name="Armor" size="1">
                                 </div>
                                 <div class="mb-1 row attributes">
                                     <label class="pl-4 label-sheet mb-0"> <span class="atts">P</span>oder de Fogo
                                     </label>
-                                    <input class="inputAttr" type="text" name="FirePower" size="1">
+                                    <input class="inputAttr number1Digit" type="text" name="FirePower" size="1">
                                 </div>
 
                                 <div class="border border-secondary form-group">
                                     <div class="mb-1 row attributes">
                                         <label class="pl-4 label-sheet mb-0"> <span class="atts">P</span>ontos de Vida
                                         </label>
-                                        <input class="inputAttr m-auto" type="text" name="Hp" size="1">
+                                        <input class="inputAttr m-auto number2Digit" type="text" name="Hp" size="1">
                                     </div>
                                     <div class="mb-1 row attributes">
                                         <label class="pl-4 label-sheet mb-0"> <span class="atts">P</span>ontos de Magia
                                         </label>
-                                        <input class="inputAttr m-auto" type="text" name="Mp" size="1">
+                                        <input class="inputAttr m-auto number2Digit" type="text" name="Mp" size="1">
                                     </div>
                                     <div class="mb-1 row attributes">
                                         <label class="pl-4 label-sheet mb-0"> <span class="atts">P</span>ontos de
                                             Experiência
                                         </label>
-                                        <input class="inputAttr m-auto" type="text" name="Exp" size="1">
+                                        <input class="inputAttr m-auto number2Digit" type="text" name="Exp" size="1">
                                     </div>
                                 </div>
 
@@ -77,12 +77,12 @@
                                     </span>
                                     <div class="row">
                                         <span class="sMoney">Ouro: </span><input type="text" name="Gold"
-                                            class="classMoney">
+                                            class="classMoney number2Digit">
                                         <br>
                                         <span class="sMoney">Prata: </span><input type="text" name="Silver"
-                                            class="classMoney"> <br>
+                                            class="classMoney number2Digit"> <br>
                                         <span class="sMoney">Bronze: </span><input type="text" name="Bronze"
-                                            class="classMoney">
+                                            class="classMoney number2Digit">
                                     </div>
                                 </div>
 
@@ -133,6 +133,8 @@
     </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"
+    integrity="sha256-Kg2zTcFO9LXOc7IwcBx1YeUBJmekycsnTsq2RuFHSZU=" crossorigin="anonymous"></script>
 <script type="text/javascript">
     $(function () {
         //get character points and fill on sheet
@@ -145,5 +147,7 @@
                     }
                 }
             });
+        $('.number1Digit').mask('0');
+        $('.number2Digit').mask('00');
     })
 </script>

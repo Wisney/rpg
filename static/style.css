@@ -281,6 +281,7 @@ h5 {
     float: right;
     margin-right: 5px;
     height: 30px;
+    text-align: center;
 }
 
 .atts {
@@ -306,12 +307,14 @@ textarea {
 .sMoney {
     display: inline-block;
     width: 200px;
+    text-align: center;
 }
 
 .classMoney {
     border: 1px solid #000;
     width: 25px;
     margin-bottom: 5px;
+    text-align: center;
 }
 
 .divPoints {
@@ -385,4 +388,12 @@ textarea {
     border-width: 2px !important;
     padding-right: 15px;
     padding-left: 15px;
+}
+
+.number1Digit {
+    text-align: center;
+}
+
+.number2Digit {
+    text-align: center;
 }
