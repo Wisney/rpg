@@ -1,3 +1,10 @@
+Site:
+```
+    https://rpgzinho.herokuapp.com/
+```
+
+To install and run:
+
 In Postgres:
 ```
     CREATE EXTENSION hstore;

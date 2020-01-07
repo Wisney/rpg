@@ -1,1 +1,1 @@
-web: root
+web: go install ./... && root
