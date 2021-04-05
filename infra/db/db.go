@@ -13,12 +13,15 @@ func GetConnect() *pg.DB {
 	if err != nil {
 		panic(err)
 	}
-	parsedURL += "?sslmode=prefer"
+	//parsedURL += "?sslmode=prefer"
 
 	pgOptions := &pg.Options{
 		User:     parsedURL.User.Username(),
 		Database: parsedURL.Path[1:],
 		Addr:     parsedURL.Host,
+		TLSConfig: &tls.Config{
+			InsecureSkipVerify: true,
+		}
 	}
 
 	if password, ok := parsedURL.User.Password(); ok {
