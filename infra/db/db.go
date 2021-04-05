@@ -9,7 +9,7 @@ import pg "github.com/go-pg/pg"
 
 //GetConnect returns the connection of db
 func GetConnect() *pg.DB {
-	parsedURL, err := url.Parse(os.Getenv("DATABASE_URL"))
+	parsedURL, err := url.Parse(os.Getenv("DATABASE_URL"))+"?sslmode=prefer"
 	if err != nil {
 		panic(err)
 	}
