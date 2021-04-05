@@ -3,6 +3,7 @@ package db
 import (
 	"net/url"
 	"os"
+	"crypto/tls"
 )
 
 import pg "github.com/go-pg/pg"
@@ -14,12 +15,17 @@ func GetConnect() *pg.DB {
 		panic(err)
 	}
 	//parsedURL += "?sslmode=prefer"
+	
+	tlsConfig := &tls.Config{
+        InsecureSkipVerify: true,
+        // ServerName:         "localhost",
+    }
 
 	pgOptions := &pg.Options{
 		User:     parsedURL.User.Username(),
 		Database: parsedURL.Path[1:],
 		Addr:     parsedURL.Host,
-		TLSConfig: &pg.Options.TLSConfig.Config{
+		TLSConfig: tlsConfig{
 			InsecureSkipVerify: true,
 		},
 	}
