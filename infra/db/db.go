@@ -18,7 +18,6 @@ func GetConnect() *pg.DB {
 		User:     parsedURL.User.Username(),
 		Database: parsedURL.Path[1:],
 		Addr:     parsedURL.Host,
-		tls: true,
 	}
 
 	if password, ok := parsedURL.User.Password(); ok {
