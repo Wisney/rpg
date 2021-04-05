@@ -19,7 +19,7 @@ func GetConnect() *pg.DB {
 		User:     parsedURL.User.Username(),
 		Database: parsedURL.Path[1:],
 		Addr:     parsedURL.Host,
-		TLSConfig: &tls.Config{
+		TLSConfig: &pg.Options.TLSConfig.Config{
 			InsecureSkipVerify: true,
 		},
 	}
