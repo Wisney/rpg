@@ -21,7 +21,7 @@ func GetConnect() *pg.DB {
 		Addr:     parsedURL.Host,
 		TLSConfig: &tls.Config{
 			InsecureSkipVerify: true,
-		}
+		},
 	}
 
 	if password, ok := parsedURL.User.Password(); ok {
